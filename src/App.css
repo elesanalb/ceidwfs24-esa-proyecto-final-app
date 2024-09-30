@@ -1,0 +1,65 @@
+/* PROCUCTOS LISTA DE LA COMPRA */
+
+.lista-compra{
+    border: 2px solid red;
+    padding: 20px 20px 100px;
+}
+
+.producto-lista{
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+    padding: 10px 15px;
+}
+
+.info-producto-lista{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.estado-compra{
+    display: flex;
+    align-items: center;
+}
+
+.estado-compra input[type="radio"]{
+    width: 18px;
+    height: 18px;
+    margin: 0 5px;
+}
+
+.info-producto-lista .precio{
+    margin: 0 5px;
+    width: 50px;
+}
+
+.info-producto-lista .tag.mercado{
+    margin-right: auto;
+}
+
+.tag.mercado{
+    background-color: rgb(110, 200, 110);
+}
+.tag.prioridad{
+    background-color: rgb(244, 102, 102);
+}
+
+
+
+
+/* ------------------------------------------------------- */
+
+
+/* LISTA PRODUCTOS */
+
+
+
+.lista-productos{
+    overflow-x: scroll;
+}
+
+
+/* ----------------------------------------------- */

@@ -1,0 +1,136 @@
+.seccion-productos{
+    margin: 40px 20px 100px;
+}
+
+.lista-productos{
+    /* border: 2px solid red; */
+    overflow-x: scroll;
+}
+
+
+/* _________________________________ */
+
+.add{
+    border-radius: 50%;
+    background-color: rgb(12, 182, 52);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+}
+
+.add svg{
+    width: 45px;
+    height: 45px;
+    padding: 7px;
+    color: white;
+}
+
+
+/* ________________________________________- */
+
+.productos{
+    width: 200%;
+    padding: 20px 0 50px;
+    display: grid;
+    width: fit-content;
+    grid-template-columns: repeat(4, max-content);
+}
+
+.productos-col{
+    border-width: 2px;
+    border-style: solid;
+    width: max-content;
+}
+.productos-row{
+    border-width: 1px;
+    border-style: solid;
+    padding: 15px 20px;
+    height: max-content;
+}
+
+.productos .producto{ border-color: green;}
+.productos .mercado{ border-color: red ; }
+.productos .precio{ border-color: orange; }
+.productos .prioridad{ border-color: purple; }
+
+
+
+/* _____________________________________________--- */
+
+
+
+/* PRODUCTO NUEVO */
+
+.producto-nuevo{
+    top: 120px;
+    left: 0;
+    background-color: white;
+    position: absolute;
+    width: calc(100% - 40px);
+    margin:0 20px ;
+    padding: 40px;
+    border: 3px solid aqua;
+}
+
+.item-vacio{ color: rgb(69, 69, 69); }
+.nombre-item{ color: black; }
+
+.producto-nuevo-form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-nuevo-form input{
+    margin-top: 20px;
+}
+
+.producto-nuevo-form input[type="text"]{
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid grey;
+    padding: 5px 10px;
+}
+
+.producto-nuevo-form div.input-precio{
+    
+}
+
+.producto-nuevo-form input.input-precio{
+    width: 80px;
+    margin-right: 5px;
+    text-align: right;
+}
+
+input.input-precio::placeholder{
+    text-align: left;
+}
+
+.producto-nuevo-form .seccion-botones{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.producto-nuevo-form .boton-form{
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+.boton-form.cancelar{
+    background:none;
+    color:red;
+    text-decoration: underline;
+}
+
+.boton-form.submit{
+    background-color: rgb(115, 212, 115);
+    padding: 5px 10px;
+    border-radius: 25px;
+}

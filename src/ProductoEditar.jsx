@@ -2,7 +2,9 @@ import { useState } from "react"
 
 
 
-function ProductoEditar({editarProducto,estadoEditar,item,mercados,prioridad,selectedMercado,selectedPrioridad,precio,max,units}){
+function ProductoEditar({editarProducto,id,
+    estadoEditar,switchEditar,
+    item,mercados,prioridad,selectedMercado,selectedPrioridad,precio,max,units}){
 
     /* VARIABLES & HOOKS  */
 
@@ -79,8 +81,8 @@ function ProductoEditar({editarProducto,estadoEditar,item,mercados,prioridad,sel
 
                     /* ------- Validacion del formulario  */
 
-                            if( inputItem.trim() == "" || !seleccionMercado || !inputPrecio ){
-
+                            if( inputItem.trim() == "" /*|| !seleccionMercado || !inputPrecio*/ ){
+                                /*
                                 if( inputItem.trim() == "" ){
                                     setStatusItem(true)
                                 }else{
@@ -101,12 +103,45 @@ function ProductoEditar({editarProducto,estadoEditar,item,mercados,prioridad,sel
                                 else{
                                     setStatusPrecio(0)
                                 }
-
+*/
 
 
                             }else{
-                                setStatusSubmit(true)
-                            }    
+
+                                estadoEditar(false)
+                                switchEditar(false)
+                                
+
+/* ------------------------ PETICION A LA API ---------------------------------------------------------------- */
+
+                                fetch("http://localhost:4000/productos/editar",
+                                    {
+                                        method : "PUT",
+                                        body : JSON.stringify(
+                                            {
+                                                id : id,
+                                                producto : inputItem
+                                            }
+                                        ),
+                                        headers : {
+                                            "Content-type" : "application/json"
+                                        }
+                                    }
+                                )
+                                .then( res => res.json())
+                                .then( res => {
+                                    console.log(res)
+                                    console.log(inputItem)
+                                    console.log(id)
+                                    
+                                    editarProducto(
+                                        {
+                                            id : id,
+                                            producto : inputItem
+                                        }
+                                    )
+                                })
+                            }
                         }}
                     
                     >
@@ -272,7 +307,8 @@ function ProductoEditar({editarProducto,estadoEditar,item,mercados,prioridad,sel
                                 }}
                             >Cancelar</button>
 
-                            
+
+
                             <input className="boton-form submit" type="submit" value="Aceptar"/>
                         
                         </div>

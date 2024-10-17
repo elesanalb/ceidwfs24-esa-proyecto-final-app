@@ -187,6 +187,8 @@ function Producto(
                     <ProductoEditar 
                         editarProducto={editarProducto}
                         estadoEditar={estadoEditar}
+                        switchEditar={switchEditar}
+                        id={id}
                         item={item}
                         mercados={mercados} selectedMercado={seleccionMercado}
                         prioridad={prioridad} selectedPrioridad={seleccionPrioridad}

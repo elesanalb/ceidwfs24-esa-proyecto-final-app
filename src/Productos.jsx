@@ -123,8 +123,11 @@ function Productos(){
     }
 
 
-    function editarProducto(){
+    function editarProducto(id,producto){
         console.log("editar")
+        setProductos(productos.map( producto => {
+            return producto;
+        }))
     }
 
     
@@ -195,6 +198,7 @@ function Productos(){
                                             key={id} id={id}
                                             
                                             onClick={ event => {
+                                                console.log(id)
                                                 setVerProducto(true)
                                                 
                                                 setSelectId(id)
@@ -301,7 +305,7 @@ function Productos(){
                         prioridad={prioridad} seleccionPrioridad={selectPrioridad}
                         max={selectMax}
                         units={selectUnits}
-                    />   
+                    />
                 }
                 
 

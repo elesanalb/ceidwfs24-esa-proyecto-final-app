@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
-body,form input,button{
+body,form,input,button,select{
   font-family: "Montserrat", sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 
@@ -81,23 +86,26 @@ h4{
   font-size: 18px;
 }
 
-
-
-form input{
+input,select{
   font-size: 16px;
-}
-
-.tag{
-  font-size: 15px;
-  border-radius: 25px;
-  padding: 2px 10px 3px;
-  height: min-content;
 }
 
 .precio{
   font-weight: 500px;
   font-size: 16px;
 }
+
+.mensaje-error{
+  font-size: 12px;
+  position: absolute;
+  color: red;
+}
+
+
+.mensaje-aviso{
+  font-size: 9px;
+}
+
 
 /* _________________________________________ */
 
@@ -180,7 +188,6 @@ form input{
   overflow-x: hidden;
 }
 
-
 .p-multiselect-trigger {
   border-bottom-left-radius: none;
   border-bottom-right-radius: none;
@@ -223,4 +230,87 @@ form input{
 
 .p-multiselect-header, .p-checkbox-box{
   display: none;
+}
+
+
+
+/* _______________________________________________________ */
+
+/* BOTONES */
+
+.boton-form{
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+.boton-icono{
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* SUBMIT */
+
+.boton-form.submit{
+  background-color: rgb(115, 212, 115);
+  padding: 5px 10px;
+  border-radius: 25px;
+}
+
+
+
+/* CANCELAR */
+
+.boton-form.cancelar{
+  background:none;
+  color:red;
+  text-decoration: underline;
+}
+
+
+
+/* EDITAR */
+
+.boton-editar{
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.boton-editar svg{
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+
+
+/* BORRAR */
+
+.boton-borrar{
+  color: rgb(64, 64, 64);
+}
+
+
+
+/* CERRAR */
+
+.boton-cerrar{
+  margin-right: auto;
+  width: 25px;
+  height: 25px;
 }

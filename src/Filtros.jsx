@@ -47,13 +47,15 @@ function Filtros(){
                     
 
                     <MultiSelect value={seleccion} className="seleccion"
-                         display='chip' placeholder='Mercados' maxSelectedLabels=""
+                        display='chip' placeholder='Mercados' maxSelectedLabels=""
                         options={
                             mercados.map( ({id,mercado}) => {
                                 return mercado
                             })
                         }
-                        
+                        onFocus={() => {
+                            console.log("lhckjrh")
+                        }}
 
                         onChange={ event => {
                             setSeleccion(event.value)

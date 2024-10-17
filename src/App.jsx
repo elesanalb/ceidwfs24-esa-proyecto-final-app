@@ -1,3 +1,22 @@
+/* ______________________________________________________ *\
+*
+* App.jsx
+*
+*   Hooks : 
+*       -useState, useEffect
+*
+*   Datos : 
+*       - API fetch a http://localhost:4000
+*
+*   Estructura :
+*       - Cabecera --> Header.jsx
+*       - Menu --> Menu.jsx
+*       - Contenido :
+*           · Filtros --> Filtros.jsx
+*           · Lista de productos --> ListaCompra.jsx
+* _______________________________________________________ */
+
+
 import { useState,useEffect } from 'react'
 import Header from './Header.jsx'
 import Menu from './Menu.jsx'
@@ -14,7 +33,6 @@ function App() {
         .then( res => res.json())
         .then( productos => {
             setProductos(productos);
-            console.log(productos);
         })
     }, []);
 
@@ -33,7 +51,10 @@ function App() {
 
                     {
                         productos.map( ({id,producto,mercado,precio,prioridad}) => {
-                            return <ListaCompra key={id} id={id} producto={producto} mercado={mercado} precio={precio} maxCompra={[1,1]} prioridad={prioridad}/>
+                            return <ListaCompra key={id} id={id} 
+                                                producto={producto} mercado={mercado} precio={precio}
+                                                maxCompra={[1,1]} prioridad={prioridad}
+                                    />
                         })
                     }
                 </section>

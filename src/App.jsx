@@ -18,13 +18,21 @@
 
 
 import { useState,useEffect } from 'react'
+
 import Header from './Header.jsx'
 import Menu from './Menu.jsx'
 import ListaCompra from './ListaCompra.jsx'
 import Filtros from './Filtros.jsx'
+
 import './App.css'
 
+
+
+
+
 function App() {
+
+/* VARIABLES & HOOKS  */
 
     let [productos,setProductos] = useState([])
 
@@ -37,6 +45,9 @@ function App() {
     }, []);
 
 
+
+
+/* ___________________________________________________________________________________________________________________________ */
 
     return (
         <>

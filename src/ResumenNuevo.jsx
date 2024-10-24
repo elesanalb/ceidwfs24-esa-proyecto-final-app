@@ -1,13 +1,26 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+
 import { FaRegEdit } from "react-icons/fa";
 
 
-function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,seleccionMercado,prioridad,seleccionPrioridad,max,units}){
+
+
+
+function ResumenNuevo(
+    {
+        verResumen,
+
+        addProducto,
+
+        item,precio,
+        mercados,seleccionMercado,
+        prioridadLista,seleccionPrioridad,
+        max,units
+    }
+){
 
 /* VARIABLES & HOOKS  */
-
-    let [maxCompra,setMaxCompra] = useState([false,false])
 
 
 
@@ -17,11 +30,11 @@ function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,sele
 
 
 
+
+
     return (
         <>
-            <nav className="nav-blur"
-                style={ status ? { display : "flex" } : { display : "none" } }
-            >
+            <nav className="nav-blur">
 
                 <div className="resumen pop-up">
 
@@ -38,15 +51,15 @@ function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,sele
 
                         <div className={`tag ${mercados.filter( (mercados) => mercados.id == seleccionMercado ).map( ({mercado}) => { return mercado } ) }`}>
                             {
-                                /* Filtrar el id del mercado según el input (numerico) que le llega */
+                                /* Filtrar el id del mercado según el input (numerico) que le llega*/
                                 mercados.filter( (mercados) => mercados.id == seleccionMercado ).map( ({mercado}) => { return mercado } )
                             }
                         </div>
 
-                        <div className={`tag ${prioridad.filter( (prioridad) => prioridad.id == seleccionPrioridad ).map( ({prioridad}) => { return prioridad } )}`}>
+                        <div className={`tag ${prioridadLista.filter( (prioridad) => prioridad.id == seleccionPrioridad ).map( ({prioridad}) => { return prioridad } )}`}>
                             {
                                 /* Filtrar el id de la prioridad según el input (numerico) que le llega */
-                                prioridad.filter( (prioridad) => prioridad.id == seleccionPrioridad ).map( ({prioridad}) => { return prioridad } )
+                                prioridadLista.filter( (prioridad) => prioridad.id == seleccionPrioridad ).map( ({prioridad}) => { return prioridad } )
                             }
                         </div>
 
@@ -94,9 +107,9 @@ function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,sele
                         
                     {/* EDITAR --> volver ------------------------------------------------------ */}
 
-                        <button type="button" className="boton-editar"
+                        <button type="button" className="boton editar"
                             onClick={ event => {
-                                switchStatus(false)
+                                verResumen(false)
                             }}
                         >
                             <FaRegEdit />
@@ -109,7 +122,7 @@ function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,sele
 
                         <Link to={"/productos"}>
                         
-                            <input className="boton-form submit" type="submit" value="Añadir"
+                            <input className="boton submit" type="submit" value="Añadir"
                             
                                 onClick={ event => {
 
@@ -136,19 +149,27 @@ function ResumenNuevo({addProducto,switchStatus,status,item,precio,mercados,sele
                                         }
                                     )
                                     .then( res => res.json() )
-                                    .then( producto => {
+                                    .then( ([{id}]) => {
+
+                                        verResumen(false)
+
+                                        /* Filtrar la listas de mercados/prioridad según el input (id) que llega para que devuelva el nombre correspondiente *\
+                                         *      filter --> devuelve lista de un solo elemento
+                                         *      pop() --> devuelve el elemento
+                                         *      .mercado | .prioridad --> devuelve el valor correspondiente */
+
                                         addProducto(
                                             {
+                                                id : id,
                                                 producto : item,
-                                                mercado : seleccionMercado,
+                                                mercado : mercados.filter( (mercados) => mercados.id == seleccionMercado ).pop().mercado,
                                                 precio : precio,
-                                                prioridad : seleccionPrioridad,
+                                                prioridad : prioridadLista.filter( (prioridad) => prioridad.id == seleccionPrioridad ).pop().prioridad,
                                                 max : max,
                                                 units : units
                                             }
                                         )
-                                        console.log(producto)
-                                        switchStatus(false)
+                                        
                                     })
                                 } }
                             />

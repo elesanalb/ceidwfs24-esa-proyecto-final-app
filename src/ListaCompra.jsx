@@ -12,7 +12,7 @@ function ListaCompra({id,producto,mercado,precio,maxCompra,prioridad}){
                         {
                             maxCompra.map( (x,i) => {
                                 return (
-                                    <input key={i} type="radio"/>
+                                    <input key={i} type="checkbox"/>
                                 )
                             })
                         }

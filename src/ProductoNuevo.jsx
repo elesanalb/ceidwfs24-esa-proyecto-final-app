@@ -4,9 +4,9 @@ import ResumenNuevo from "./ResumenNuevo.jsx"
 
 
 
-function ProductoNuevo({addProducto,mercados,prioridad}){
+function ProductoNuevo({addProducto,mercados,prioridadLista}){
 
-    /* VARIABLES & HOOKS  */
+/* VARIABLES & HOOKS  */
 
     let [inputItem,setInputItem] = useState("")
     let [statusItem,setStatusItem] = useState(false)
@@ -14,15 +14,13 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
     let [inputPrecio,setInputPrecio] = useState()
     let [statusPrecio,setStatusPrecio] = useState(0)
 
-    let [inputMax,setInputMax] = useState()
-    let [inputUnits,setInputUnits] = useState()
-
     let [seleccionMercado,setSeleccionMercado] = useState()
     let [statusMercado,setStatusMercado] = useState(false)
 
-    let [seleccionPrioridad,setSeleccionPrioridad] = useState()
+    let [inputMax,setInputMax] = useState()
+    let [inputUnits,setInputUnits] = useState()
 
-    let [statusSubmit,setStatusSubmit] = useState(false)
+    let [seleccionPrioridad,setSeleccionPrioridad] = useState()
 
 
     /* Valores por defecto */
@@ -40,9 +38,14 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
 
 
 
-/* FUNCIONES */
+/* ---------------------------------------------------------------------------------- */
 
-    function switchStatus(status){
+/* RESUMEN PRODUCTO */
+/* Estado ventana Resumen */
+
+    let [statusSubmit,setStatusSubmit] = useState(false)
+
+    function verResumen(status){
         setStatusSubmit(status)
     }
 
@@ -60,7 +63,7 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
             
 
             
-                <section className="producto-nuevo pop-up" >
+                <section className="form-producto pop-up" >
 
                     <h2 
                         className={ inputItem ? "item-vacio" : "nombre-item" }
@@ -107,7 +110,7 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
 
 
                             }else{
-                                setStatusSubmit(true)
+                                verResumen(true)
                             }    
                         }}
                     
@@ -144,6 +147,7 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
                                 
                                 onChange={ event => {
                                     setSeleccionMercado(event.target.value)
+                                    
                                 }}
                             >
 
@@ -236,7 +240,7 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
 
                                 <option key="0" defaultValue="" disabled selected>Prioridad</option>
                                 {
-                                    prioridad.map( ({id,prioridad}) => {
+                                    prioridadLista.map( ({id,prioridad}) => {
                                         return ( <option key={id} value={id}>{prioridad}</option> )
                                     })
                                 }
@@ -252,12 +256,12 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
                         
                         <div className="seccion-botones">
 
-                            <button type="button" className="boton-form cancelar">
+                            <button type="button" className="boton cancelar">
                                 <Link to={"/productos"}>Cancelar</Link>
                             </button>
 
                             
-                            <input className="boton-form submit" type="submit" value="Aceptar"/>
+                            <input className="boton submit" type="submit" value="Aceptar"/>
                         
                         </div>
 
@@ -268,17 +272,24 @@ function ProductoNuevo({addProducto,mercados,prioridad}){
 
             
 
-                <ResumenNuevo
-                    addProducto={addProducto}
-                    switchStatus={switchStatus}
-                    status={statusSubmit}
-                    item={inputItem}
-                    precio={inputPrecio}
-                    mercados={mercados} seleccionMercado={seleccionMercado}
-                    prioridad={prioridad} seleccionPrioridad={seleccionPrioridad}
-                    max={inputMax}
-                    units={inputUnits}
-                />
+            
+{/* -------------- RESUMEN ------------------------------------------------------------------------------------------ */}
+
+                {
+                    statusSubmit ?
+                    <ResumenNuevo
+                        verResumen={verResumen}
+                        
+                        addProducto={addProducto}
+                        
+                        item={inputItem} precio={inputPrecio}
+                        mercados={mercados} seleccionMercado={seleccionMercado}
+                        prioridadLista={prioridadLista} seleccionPrioridad={seleccionPrioridad}
+                        max={inputMax} units={inputUnits}
+                    />
+                    : ""
+                }
+                
                 
                 
             </nav>

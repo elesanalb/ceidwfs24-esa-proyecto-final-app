@@ -1,5 +1,6 @@
 import { useState } from "react"
 import ProductoEditar from "./ProductoEditar.jsx";
+
 import { FaRegEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -9,12 +10,17 @@ import { IoMdClose } from "react-icons/io";
 
 
 function Producto(
-    {   
+    {  
+        verProducto,
+
         delProducto,
-        editarProducto,
-        id,
-        item,precio,mercados,seleccionMercado,prioridad,seleccionPrioridad,max,units,
-        switchEditar,status
+        editarProducto,editarProductoMercado,editarProductoPrecio,editarProductoPrioridad,editarProductoMax,
+
+        id,producto,precio,
+        mercados,productoMercado,
+        prioridadLista,productoPrioridad,
+        tipos,productoTipo,
+        max,units
     }
 ){
 
@@ -22,15 +28,19 @@ function Producto(
 
     let [maxCompra,setMaxCompra] = useState([false,false])
 
+
+
+
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* EDITAR */
+/* Estado ventana ProductoEditar */
+
     let [statusEditar,setStatusEditar] = useState(false)
-    
 
-
-
-/* FUNCIONES */
-
-    function estadoEditar(estado){
-        setStatusEditar(estado)
+    function switchEditar(status){
+        setStatusEditar(status)
     }
 
 
@@ -41,45 +51,45 @@ function Producto(
 
 
 
+
+
     return (
         <>
-            <nav className="nav-blur"
-                style={ status ? { display : "flex" } : { display : "none" } }
-            >
+            <nav className="nav-blur">
 
-            {/* Tap fuera para salir de la ventana -------------------------------------- */}
+
+            {/* Tap fuera para salir de la ventana ------------ */}
             
                 <div className="tap-fuera"
                
                onClick={ event => {
-                        switchEditar(false)
+                        verProducto(false)
                     }}
                 ></div>
                 
-            {/* ----------------------------------------------------------------------------- */}
+            {/* ----------------------------------------------- */}
+
+
+
+
 
                 <div className="resumen pop-up">
 
 
-
-
-
 {/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
                         
-                    <div className="seccion-botones" style={{ margin : "0 0 20px" }}>
+                    <div className="seccion-botones top-botones">
 
-                        <IoMdClose className="boton-cerrar"
+                        <IoMdClose className="boton-icono cerrar"
                             onClick={ event => {
-                                switchEditar(false)
+                                verProducto(false)
                             }}
                         />
 
 
-
-                        <button type="button" className="boton-icono boton-borrar"
-
+                        <FaTrash className="boton-icono borrar"
                             onClick={ event => {
-                                switchEditar(false)
+                                verProducto(false)
 
                                 
                                 fetch("http://localhost:4000/productos/borrar",
@@ -97,7 +107,7 @@ function Producto(
                                 })
 
                             }}
-                        ><FaTrash /></button>
+                        />
 
                     </div>
                     
@@ -105,59 +115,86 @@ function Producto(
 
 
 
-{/* ------------------------------------------------------------------------------------------------------------------ */}
-
-                    <h4>Resumen del producto:</h4>
-
+{/* ------------------------------------------------------------------------------------------------------------ */}
 
 
                     <div className="info-producto">
-                        <h2>{item}</h2>
+                        <h2>{producto}</h2>
                     </div>
                     
-                    
+
 
 {/* --------------- TAGS ------------------------------------------------------------------- */}
                     
                     <div className='info-producto tags'>
 
-                        <div className={`tag ${seleccionMercado}`}>{seleccionMercado}</div>
+                        <div className={`tag ${ mercados.filter( (mercado) => mercado.id == productoMercado ).pop().mercado }`}>
+                            {
+                                mercados.filter( (mercado) => mercado.id == productoMercado ).pop().mercado
+                            }
+                        </div>
 
-                        <div className={`tag ${seleccionPrioridad}`}>{seleccionPrioridad}</div>
+                        <div className={`tag ${ prioridadLista.filter( (prioridad) => prioridad.id == productoPrioridad ).pop().prioridad }`}>
+                            {
+                                prioridadLista.filter( (prioridad) => prioridad.id == productoPrioridad ).pop().prioridad
+                            }
+                        </div>
 
-                        <div className={`tag basico`}>básico</div>
+                        <div className={`tag ${ tipos.filter( (tipo) => tipo.id == productoTipo ).pop().tipo }`}>
+                            {
+                                tipos.filter( (tipo) => tipo.id == productoTipo ).pop().tipo
+                            }
+                        </div>
 
                     </div>
 
+
+
+
+
+{/* -------------- PRECIO ---------------------------------------------------------------- */}
+
+                    <div className="info-producto resumen-grid precio"
+                        style={{ gridTemplateColumns : "repeat(3,auto)" }}
+                    >
+                        {/* columnas */}
+                        <h5>Precio</h5>
+                        <h5>Cant.</h5>
+                        <h5>Precio/kg</h5>
+                        
+                        {/* filas */}
+                        <p className=''>{precio}€</p>
+                        <p>20g</p>
+                        <p className="">{precio}€</p>
+                        
+                    </div>
 
 
 
 { /* -------------- INFO ---------------------------------------------------------------- */}
 
-
-                    <div className="info-producto resumen-grid">
+                    <div className="info-producto resumen-grid"
+                        style={{ gridTemplateColumns : "repeat(3,auto)" }}
+                    >
                         {/* columnas */}
-                        <h5>Precio</h5>
-                        <h5>Cant.</h5>
-                        <h5>Precio/kg</h5>
-                        <h5>Max</h5>
                         <h5>Units</h5>
-                        
+                        <h5>Max</h5>
+                        <h5>Compras</h5>
                         
                         {/* filas */}
-                        <p className='precio'>{precio}€</p>
-                        <p>20g</p>
-                        <p className="precio">{precio}€</p>
-                        <p>{max}</p>
                         <p>{units}</p>
+                        <p>{max}</p>
+                        <p>{max}</p>
                         
                         
                     </div>
 
                     
-                    <div>
-                        <p className="info-producto mensaje-aviso">Se pondrán valores por defecto en los campos que se han dejado vacíos.</p>        
+                    <div className="info-producto">
+                        <p className="mensaje-aviso">Se mostrarán valores por defecto en los campos que se dejaron vacíos.</p>        
                     </div>
+
+
 
 
 
@@ -165,7 +202,7 @@ function Producto(
 
                     <div className="seccion-botones">
 
-                        <button type="button" className="boton-editar"
+                        <button type="button" className="boton editar"
                         onClick={ event => {
                             setStatusEditar(true)
                         }}
@@ -176,25 +213,34 @@ function Producto(
 
                     </div>
                     
+
                 </div>
 
 
 
-                
+
+
+{/* -------------- EDITAR ------------------------------------------------------------------------------------------ */}
+
                 {
                     statusEditar ?
                     
-                    <ProductoEditar 
-                        editarProducto={editarProducto}
-                        estadoEditar={estadoEditar}
+                    <ProductoEditar
                         switchEditar={switchEditar}
-                        id={id}
-                        item={item}
-                        mercados={mercados} selectedMercado={seleccionMercado}
-                        prioridad={prioridad} selectedPrioridad={seleccionPrioridad}
-                        precio={precio}
-                        max={max}
-                        units={units}
+                        verProducto={verProducto}
+
+                        editarProducto={editarProducto}
+                        editarProductoMercado={editarProductoMercado}
+                        editarProductoPrecio={editarProductoPrecio}
+                        editarProductoPrioridad={editarProductoPrioridad}
+                        editarProductoMax={editarProductoMax}
+                        
+                        
+                        id={id} producto={producto} precio={precio}
+                        mercados={mercados} productoMercado={productoMercado}
+                        prioridadLista={prioridadLista} productoPrioridad={productoPrioridad}
+                        tipos={tipos} productoTipo={productoTipo}
+                        max={max} units={units}
                     /> 
                         
                     : ""

@@ -1,6 +1,10 @@
 import { useState,useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
+import './Filtros.css'
+
 import { MultiSelect } from 'primereact/multiselect';
+
+import { FaSearch } from "react-icons/fa";
+
 
 
 function Filtros(){
@@ -12,7 +16,6 @@ function Filtros(){
         .then( res => res.json())
         .then( mercados => {
             setMercados(mercados);
-            //console.log(mercados);
         })
     },[]);
 

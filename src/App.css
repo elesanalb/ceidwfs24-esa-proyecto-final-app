@@ -35,11 +35,6 @@
     margin: 0 5px;
 }
 
-.info-producto .precio{
-    margin: 0 5px;
-    width: 50px;
-}
-
 .info-producto .tag.mercado{
     margin-right: auto;
 }
@@ -47,47 +42,6 @@
 
 
 
-/* TAGS */
-
-.tag{
-    font-size: 15px;
-    border-radius: 25px;
-    padding: 2px 10px 3px;
-    width: fit-content;
-    height: min-content;
-}
-.tag.Mercadona{
-    background-color: #229e6b;
-    color: white;
-}
-.tag.Lidl{
-    background-color: #fff000;
-}
-.tag.Dia{
-    background-color:#c8030f;
-}
-.tag.Carrefour{
-    background-color: #00529c;
-}
-.tag.Aldi{
-    background-color: #00b6ed;
-}
-.tag.HuaLian{
-    background-color: #009b4d;
-}
-.tag.importante{
-    background-color: rgb(240, 204, 73);
-}
-.tag.ok{
-    background-color: rgb(158, 194, 241);
-}
-.tag.opcional{
-    background-color: rgb(248, 143, 143);
-}
-.tag.basico{
-    background-color: gray;
-    color: white;
-}
 
 /* ------------------------------------------------------- */
 

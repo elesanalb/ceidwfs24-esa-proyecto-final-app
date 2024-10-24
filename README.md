@@ -11,3 +11,4 @@ Currently, two official plugins are available:
 - install react-icons
 - install react-select
 - install primereact
+- install react-toggle

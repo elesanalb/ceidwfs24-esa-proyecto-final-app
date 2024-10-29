@@ -16,8 +16,8 @@ function Menu({page}) {
                     </li>
                     
 
-                    <li className={ page == "gasto" ? "clicked" : "" } >
-                        <Link to={"/gasto-total"} className="menu-link">Gasto total</Link>
+                    <li className={`gasto menu-link ${page == "gasto" ? "clicked" : ""}`} >
+                        Gasto total
                     </li>
 
 

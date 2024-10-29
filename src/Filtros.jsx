@@ -7,23 +7,35 @@ import { FaSearch } from "react-icons/fa";
 
 
 
-function Filtros(){
+function Filtros(
+    {
+        buscarItem,
+        filtrarMercado,
+        mercados,tipos,prioridadLista
+    }
+){
 
-    let [mercados,setMercados] = useState([])
+/* VARIABLES & HOOKS */
 
-    useEffect( () => {
-        fetch("http://localhost:4000/mercados")
-        .then( res => res.json())
-        .then( mercados => {
-            setMercados(mercados);
-        })
-    },[]);
-
+/* Estados */
 
     let [textSearchStatus,setTextSearchStatus] = useState(false)
 
-    let [selectStatus,setSelectStatus] = useState(false)
-    let [seleccion,setSeleccion] = useState()
+
+
+
+
+/* Funciones */
+
+    let [seleccionMercado,setSeleccionMercado] = useState()
+    let [seleccionTipos,setSeleccionTipos] = useState()
+    let [seleccionPrioridad,setSeleccionPrioridad] = useState()
+
+
+
+
+
+/* ______________________________________________________________________________________________________________________________________ */
 
 
 
@@ -31,43 +43,110 @@ function Filtros(){
 
     return (
         <>
-            <form className='filtros'>
+            <div className="barra-busqueda">
+               <div className='contenedor-filtros'>
 
-                <div className='busqueda'>
 
-                    <div className={ `filtro-texto ${ textSearchStatus ? "animacion-busqueda-in" : "animacion-busqueda-out"}`}>
-                        <FaSearch
-                            onClick={ (event) => {
-                                setTextSearchStatus(!textSearchStatus);
-                                console.log(textSearchStatus);
+
+{/* ----------- BUSQUEDA ---------------------------------------------------------------------------------------------------------------------------------------- */}
+
+                    <div className='filtros'>
+
+                        <div className={ `filtro-texto ${ textSearchStatus ? "animacion-busqueda-in" : "animacion-busqueda-out"}`}>
+                            
+                            <FaSearch
+                                onClick={ (event) => {
+                                    setTextSearchStatus(!textSearchStatus);
+                                }}
+                            />
+
+                            
+                            {
+                                textSearchStatus ? 
+                                
+                                <input type="text" placeholder="Buscar..."
+                                    onChange={ event => {
+                                        buscarItem(event.target.value)
+                                        console.log(event.target.value)
+                                    }}
+                                />
+
+                                : ""
+                            }
+                            
+
+                        </div>
+
+
+
+
+                        
+    {/* --------------- MERCADOS ------------------------------------------------------------------------------------------------------------------------------------ */}
+
+                        <MultiSelect className="filtro-seleccion"
+                            display='chip' placeholder='Mercados' maxSelectedLabels=""
+
+                            value={seleccionMercado} 
+                            
+                            options={
+                                mercados.map( ({mercado,id}) => { return mercado })
+                            }
+                            
+                            onFocus={() => {
+                            }}
+
+                            onChange={ event => {
+                                setSeleccionMercado(event.value)
+                                console.log(seleccionMercado)
                             }}
                         />
 
-                        <input type="text" placeholder="Buscar..."
-                            className={ textSearchStatus ? "" : "display-none" }
+
+
+
+
+    {/* --------------- TIPO ----------------------------------------------------------------------------------------------------------------------------------------- */}
+
+                        <MultiSelect className="filtro-seleccion"
+                            display="chip" placeholder="Tipos" maxSelectedLabels=""
+
+                            value={seleccionTipos}
+
+                            options={
+                                tipos.map( ({tipo,id}) => { return tipo })
+                            }
+
+                            onChange={ event => {
+                                setSeleccionTipos(event.value)
+                            }}
                         />
+
+
+
+
+
+    {/* ---------------- PRIORIDAD ---------------------------------------------------------------------------------------------------------------------------------------- */}
+
+                        <MultiSelect className="filtro-seleccion"
+                            display="chip" placeholder="Prioridad" maxSelectedLabels=""
+
+                            value={seleccionPrioridad}
+
+                            options={
+                                prioridadLista.map( ({prioridad,id}) => { return prioridad })
+                            }
+
+                            onChange={ event => {
+                                setSeleccionPrioridad(event.value)
+                            }}
+                        />
+
+
                     </div>
-                    
 
-                    <MultiSelect value={seleccion} className="seleccion"
-                        display='chip' placeholder='Mercados' maxSelectedLabels=""
-                        options={
-                            mercados.map( ({id,mercado}) => {
-                                return mercado
-                            })
-                        }
-                        onFocus={() => {
-                            console.log("lhckjrh")
-                        }}
-
-                        onChange={ event => {
-                            setSeleccion(event.value)
-                        }}
-                    />
-                    
-                </div>
-
-            </form>
+                </div> 
+            </div>
+            
         </>
     )
 }

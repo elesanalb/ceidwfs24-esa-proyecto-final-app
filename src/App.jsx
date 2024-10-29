@@ -34,15 +34,96 @@ function App() {
 
 /* VARIABLES & HOOKS  */
 
-    let [productos,setProductos] = useState([])
+    let [productosCompra,setProductosCompra] = useState([])
 
     useEffect( () => {
-        fetch("http://localhost:4000/productos")
+        fetch("http://localhost:4000/productos/compra",
+            {
+                method : "POST",
+                body : JSON.stringify({ filtromercado : "" }),
+                headers : {
+                    "Content-type" : "application/json"
+                }
+            }
+        )
         .then( res => res.json())
         .then( productos => {
-            setProductos(productos);
+            setProductosCompra(productos);
         })
     }, []);
+
+
+
+/* Mercados -------------------------------------- */
+
+    let [mercados,setMercados] = useState([])
+        
+    useEffect( () => {
+        fetch("http://localhost:4000/mercados")
+        .then( res => res.json())
+        .then( mercados => {
+            setMercados(mercados)
+        })
+    },[])
+
+
+
+/* Prioridad ------------------------------------ */
+
+    let [prioridadLista,setPrioridadLista] = useState([])
+
+    useEffect( () => {
+        fetch("http://localhost:4000/prioridad")
+        .then( res => res.json())
+        .then( prioridad => {
+            setPrioridadLista(prioridad)
+        })
+    },[])
+
+
+
+/* Tipos ----------------------------------------- */
+
+    let [tipos,setTipos] = useState([])
+
+    useEffect( () => {
+        fetch("http://localhost:4000/tipos")
+        .then( res => res.json())
+        .then( tipos => {
+            setTipos(tipos)
+        })
+    },[])
+
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+/* FILTROS */
+
+    let [filtroMercado,setFiltroMercado] = useState()
+
+    function filtrarMercado(mercado){
+        setFiltroMercado(mercado)
+    }
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNCIONES */
+
+    function editarProductosCompra({id}){
+        setProductosCompra( productosCompra.filter( productos => productos.id != id ).map( productos => { return productos }))
+    }
+
+
+    
+
 
 
 
@@ -54,17 +135,25 @@ function App() {
             <Header title="Lista de la compra"/>
             <Menu page="lista"/>
 
+
+
             <nav className='lista-compra'>
 
                 <section>
                     
-                    <Filtros />
+                    <Filtros 
+                        filtrarMercado={filtrarMercado}
+                        mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
+                    />
+
+
+
 
                     {
-                        productos.map( ({id,producto,mercado,precio,prioridad}) => {
+                        productosCompra.map( ({id,producto,estado,mercado,precio,prioridad,max}) => {
                             return <ListaCompra key={id} id={id} 
-                                                producto={producto} mercado={mercado} precio={precio}
-                                                maxCompra={[1,1]} prioridad={prioridad}
+                                                editarProductosCompra={editarProductosCompra}
+                                                producto={producto} estado={estado} mercado={mercado} precio={precio} prioridad={prioridad} max={max}
                                     />
                         })
                     }

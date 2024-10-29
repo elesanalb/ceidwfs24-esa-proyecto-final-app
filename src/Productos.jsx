@@ -27,7 +27,6 @@
 
 
 import { useState,useEffect } from 'react'
-import { Link, useOutlet } from 'react-router-dom'
 
 import Header from './Header.jsx'
 import Menu from './Menu.jsx'
@@ -39,9 +38,14 @@ import TiposEditar from './TiposEditar.jsx'
 import Filtros from './Filtros.jsx'
 import './Productos.css'
 
+import Toggle from 'react-toggle'
+import "react-toggle/style.css"
+
 import { FaPlus } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { TbProgressCheck } from "react-icons/tb";
+import { BiSolidFridge } from "react-icons/bi";
+import { TbShoppingBagEdit } from "react-icons/tb";
 
 
 
@@ -51,12 +55,7 @@ import { TbProgressCheck } from "react-icons/tb";
 function Productos(){
 
 /* VARIABLES & HOOKS */
-
-    /* Dibujar número de columnas del grid ------- */
-        let [columnas,setColumnas] = useState([])
-
-
-        
+       
 /* ---- Fetch a Productos, Mercados, Prioridad, Tipos -------------------------------------- */
     
     /* Productos ------------------------------------- */
@@ -64,11 +63,18 @@ function Productos(){
         let [productos,setProductos] = useState([])
         
         useEffect( () => {
-            fetch("http://localhost:4000/productos")
+            fetch("http://localhost:4000/productos/frecuencia",
+                {
+                    method : "POST",
+                    body : JSON.stringify({ frecuencia : "1" }),
+                    headers : {
+                        "Content-type" : "application/json"
+                    }
+                }
+            )
             .then( res => res.json())
             .then( productos => {
                 setProductos(productos)
-                setColumnas(Object.keys(productos[0]))
             })
         },[])
 
@@ -127,11 +133,42 @@ function Productos(){
 
 
 
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* PESTAÑAS MENSUAL / OCASIONAL */
+
+    let [statusTab,setStatusTab] = useState(false)
+
+    function productosFrecuencia(frecuencia){
+        fetch("http://localhost:4000/productos/frecuencia",
+            {
+                method : "POST",
+                body : JSON.stringify({ frecuencia : frecuencia }),
+                headers : {
+                    "Content-type" : "application/json"
+                }
+            }
+        )
+        .then( res => res.json())
+        .then( productos => {
+            setProductos(productos)
+        })
+    }
+
+
+
+
+
 /* --------------------------------------------------------------------------------------- */
 
 /* PRODUCTO NUEVO */
 
-    let productoNuevo = useOutlet()
+    let [productoNuevo,setProductoNuevo] = useState(false)
+    
+    function crearProducto(status){
+        setProductoNuevo(status)
+    }
 
 
 
@@ -142,17 +179,44 @@ function Productos(){
 
     let [producto,setProducto] = useState()
     let [productoId,setProductoId] = useState()
-    let [productoEstado,setProductoEstado] = useState()
+    let [estado,setEstado] = useState()
     let [precio,setPrecio] = useState()
     let [precioKg,setPrecioKg] = useState()
-    let [productoMercado,setProductoMercado] = useState()
     let [cantidad,setCantidad] = useState()
-    let [cantidadUd,setCantidadUd] = useState()
-    let [frecuencia,setFrecuencia] = useState()
     let [max,setMax] = useState()
     let [units,setUnits] = useState()
+    let [frecuencia,setFrecuencia] = useState()
+
+    let [productoMercado,setProductoMercado] = useState()
+    let [productoInfoCantidad,setProductoInfoCantidad] = useState()
+    let [productoInfoCantidadUd,setProductoInfoCantidadUd] = useState()
     let [productoPrioridad,setProductoPrioridad] = useState()
     let [productoTipo,setProductoTipo] = useState()
+
+
+    let [cantidadLista,setCantidadLista] = useState(
+        [
+            { value : "1" },
+            { value : "2" },
+            { value : "6" },
+            { value : "100" },
+            { value : "200" },
+            { value : "500" },
+            { value : "12" },
+            { value : "24" }
+        ]
+    )
+
+    let [cantidadUdLista,setCantidadUdLista] = useState(
+        [
+            { value : "kg" },
+            { value : "g" },
+            { value :  "L" },
+            { value : "mL" },
+            { value : "Ud" },
+            { value : "m" }
+        ]
+    )
     
 
 
@@ -202,66 +266,129 @@ function Productos(){
 /*  FUNCIONES */
 
 /* PRODUCTOS ------------------------------------------------------------------------------ */
+
     function addProducto(producto){
         setProductos([...productos,producto])
-        setProductosInfo([...productosInfo,producto])
     }
 
     
     function delProducto(id){
         setProductos(productos.filter( producto => { return producto.id != id }))
-        setProductosInfo(productosInfo.filter( producto => {return producto.id != id }))
     }
 
 
-    function editarProducto({id,producto}){
-        setProductosInfo( productosInfo.map( productos => {
-            if( productos.id == id ){
-                productos.producto = producto
-            }
-            return productos
-        }))
-    }
+
+    /* EDITAR PRODUCTO ------------------------------------------------------------------*/
+
+        function editarProducto({id,producto}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.producto = producto
+                }
+                return productos
+            }))
+        }
 
 
-    function editarProductoPrecio({id,precio}){
-        setProductos( (productos.map( productos => {
-            if( productos.id == id){
-                productos.precio = precio
-            }
-            return productos
-        })))
-    }
-
-    
-    function editarProductoMercado({id,mercado}){
-        setProductos( productos.map( productos => {
-            if( productos.id == id ){
-                productos.mercado = mercado
-            }
-            return productos
-        }))
-    }
+        function editarProductoEstado({id,estado}){
+            setProducto( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.estado = estado
+                }
+                return productos
+            }))
+        }
 
 
-    function editarProductoPrioridad({id,prioridad}){
-        setProductos( productos.map( productos => {
-            if( productos.id == id){
-                productos.prioridad = prioridad
-            }
-            return productos
-        }))
-    }
+        function editarProductoPrecio({id,precio}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id){
+                    productos.precio = precio
+                }
+                return productos
+            }))
+        }
 
 
-    function editarProductoMax({id,max}){
-        setProductos( productos.map( productos => {
-            if( productos.id ==id ){
-                productos.max = max
-            }
-            return productos
-        }))
-    }
+        function editarProductoPrecioKg({id,preciokg}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.preciokg = preciokg
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoCantidad({id,cantidad}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.cantidad = cantidad
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoUnits({id,units}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id){
+                    productos.units = units
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoMax({id,max}){
+            setProductos( productos.map( productos => {
+                if( productos.id ==id ){
+                    productos.max = max
+                }
+                return productos
+            }))
+        }
+
+        
+        function editarProductoMercado({id,mercado}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.mercado = mercado
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoPrioridad({id,prioridad}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id){
+                    productos.prioridad = prioridad
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoTipo({id,tipo}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.tipo = tipo
+                }
+                return productos
+            }))
+        }
+
+
+        function editarProductoFrecuencia({id,frecuencia}){
+            setProductos( productos.map( productos => {
+                if( productos.id == id ){
+                    productos.frecuencia = frecuencia
+                }
+                return productos
+            }))
+        }
+        
     
 
     
@@ -335,6 +462,22 @@ function Productos(){
         }))
     }
 
+
+
+
+
+
+/* FILTROS */
+
+    let [busquedaItem,setBusquedaItem] = useState()
+
+    function buscarItem(item){
+        setProductos( productos.filter( productos => productos.producto == item ))
+    }
+
+
+
+
     
 
 
@@ -357,16 +500,26 @@ function Productos(){
                 {
                     productoNuevo ? 
                     <ProductoNuevo 
-                        mercados={mercados} prioridadLista={prioridadLista}
+                        crearProducto={crearProducto}
+
                         addProducto={addProducto}
+
+                        mercados={mercados} 
+                        prioridadLista={prioridadLista}
+                        tipos={tipos}
+                        cantidadLista={cantidadLista}
+                        cantidadUdLista={cantidadUdLista}
                     /> 
                     : ""
                 }
 
-            {/* Icono link a Producto nuevo */}
-                <Link className='icono-add' to="/productos/nuevo">
-                    <FaPlus/>
-                </Link>         
+                {/* Icono añadir producto */}
+
+                    <FaPlus className='icono-add'
+                        onClick={ event => {
+                            crearProducto(true)
+                        }}
+                    />
 
 
 
@@ -375,124 +528,93 @@ function Productos(){
 {/* ---------------------------------------------------------------------------------------------------------------------- */}
 
                 {/* Componente Filtro */}
-                    <Filtros />
+                    <Filtros 
+                        buscarItem={buscarItem}
+                        mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
+                    />
 
 
 {/* ----------- LISTA PRODUCTOS --------------------------------------------------------------------- */}
 
                 <section className='contenedor-tabla'>
 
-                    <section className='tabla-productos'
-                        style={{
-                            gridTemplateColumns : `repeat(${columnas.length}, max-content)`
-                        }}
-                    >
+
+{/* -------------------- HEADINGS -------------------------------------------------------------------------------------------------------------------------------- */}
+                    <div className='tab-frecuencia'>
+
+                        <div className={`tab-mensual ${ statusTab ? "tab-oculta" : "tab-actual" }`}
+                            onClick={ event => {
+                                productosFrecuencia(1)
+                                setStatusTab(false)
+                            }}
+                        >
+                            <h5>Mensual</h5>
+                        </div>
 
 
-                        
-            {/* ------- ESTADO ---------------------------------------------------------------------------------------- */}
+                        <div className={`tab-ocasional ${ statusTab ? "tab-actual" : "tab-oculta" }`}
+                            onClick={ event => {
+                                productosFrecuencia(2)
+                                setStatusTab(true)
+                            }}
+                        >
+                            <h5>Ocasional</h5>
+                        </div>
 
-                        <div className="productos-col estado">
+                    </div>
 
+
+                    <section className="tabla-productos headings">
+
+
+                    {/* ESTADO -------------------------------------------------- */}
+                        <div className="productos-row heading estado">
                             <h3>
                                 <TbProgressCheck className='icono-estado'/>
                             </h3>
-
-                            {
-                                productos.map( ({id,estado}) => {
-                                    return (
-                                        <div className='productos-row estado' key={id}>
-                                            {
-                                                estado ? "si" : "no"
-                                            }
-                                        </div>
-                                    )
-                                })
-                            }
                         </div>
 
 
-            {/* ------- PRODUCTOS ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col producto">
-
+                    {/* PRODUCTOS ----------------------------------------------- */}
+                        <div className="productos-row heading producto">
                             <h3>Productos</h3>
+                        </div>
 
-                            {
-                                /* Utilizar los datos con los id (primary key) de Mercado, Prioridad y Tipo */
-                                productosInfo.map( ({id,producto,estado,precio,preciokg,mercado,cantidad,cantidadud,max,units,prioridad,tipo,frecuencia}) => {
-                                    return (
-                                        <div className='productos-row producto'
-                                            key={id} id={id}
-                                            
-                                            onClick={ event => {
-                                                /* Abrir ventana de Producto --> Producto.jsx */
-                                                setStatusProducto(true)
-                                                
-                                                /* Guardar los datos en variables para Productos */
-                                                setProductoId(id)
-                                                setProducto(producto)
-                                                setProductoEstado(estado)
-                                                setPrecio(precio)
-                                                setPrecioKg(preciokg)
-                                                setProductoMercado(mercado)
-                                                setCantidad(cantidad)
-                                                setCantidadUd(cantidadud)
-                                                setMax(max)
-                                                setUnits(units)
-                                                setProductoPrioridad(prioridad)
-                                                setProductoTipo(tipo)
-                                                setFrecuencia(frecuencia)
-                                            }}
-                                        >
-                                            <p className='productos-cont'>{producto}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                            
+
+                    {/* PRECIO -------------------------------------------------- */}
+                        <div className='productos-row heading precio'>
+                            <h3>€</h3>
+                        </div>
+
+
+                    {/* PRECIO / KG ---------------------------------------------- */}
+                        <div className="productos-row heading preciokg">
+                            <h3>€/kg</h3>
+                        </div>
+                    
+
+
+                    {/* CANTIDAD ------------------------------------------------- */}
+                        <div className='productos-row heading cantidad'>
+                            <h3>Cant.</h3>
                         </div>
 
 
 
-
-            {/* ------- PRECIO ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col precio">
-
-                            <h3>Precio</h3>
-
-                            {
-                                productos.map( ({id,precio}) => {
-                                    return ( <div className='productos-row precio' key={id} id={id}>{precio}€</div> )
-                                })
-                            }
-                            
+                    {/* UNITS ------------------------------------------------- */}
+                        <div className='productos-row heading single-number'>
+                            <h3>Units</h3>
                         </div>
 
 
-
-
-            {/* ------- PRECIO AL KILO ------------------------------------------------------------------------------- */}
-
-                        <div class="productos-col precio">
-
-                            <h3>€ / Kg</h3>
-
-                            {
-                                productos.map( ({id,preciokg}) => {
-                                    return ( <div className="productos-row precio" key={id} id={id}>{preciokg}€/kg</div>)
-                                })
-                            }
+                    {/* MAX ------------------------------------------------- */}
+                        <div className='productos-row heading single-number'>
+                            <h3>Max</h3>
                         </div>
-
-
-
-
-            {/* ------- MERCADOS ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col mercado">
-
+                    
+                    
+                    {/* MERCADO ------------------------------------------------- */}
+                        <div className="productos-row heading mercado tagging">
                             <h3>
                                 Mercado
                                 <MdEdit className='icono-editar'
@@ -501,89 +623,25 @@ function Productos(){
                                     }}
                                 />
                             </h3>
-
-                            {
-                                productos.map( ({id,mercado}) => {
-                                    return (
-                                        <div className='productos-row mercado'>
-                                            <div key={id} id={id} className={`tag ${mercado}`}>{mercado}</div>
-                                        </div>
-                                    )
-                                })
-                            }
-
-                        </div>
-
-           
-
-            
-            {/* -------- UNITS ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col units">
-
-                            <h3>Units</h3>
-
-                            {
-                                productos.map( ({id,units}) => {
-                                    return <div className='productos-row units' key={id} id={id}>{units}</div>
-                                })
-                            }
-
                         </div>
 
 
 
-
-            {/* ------- MAX ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col max">
-
-                            <h3>Max</h3>
-
-                            {
-                                productos.map( ({id,max}) => {
-                                    return ( <div className='productos-row max' key={id} id={id}>{max}</div> )
-                                })
-                            }
-
+                    {/* PRIORIDAD ------------------------------------------- */}
+                        <div className='productos-row heading prioridad tagging'>
+                            <h3>
+                                Prioridad
+                                <MdEdit className='icono-editar'
+                                    onClick={ event => {
+                                        verPrioridad(true)
+                                    }}
+                                />
+                            </h3>
                         </div>
 
 
-
-
-            {/* ------- PRIORIDAD ------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col prioridad">
-
-                        <h3>
-                            Prioridad
-                            <MdEdit className='icono-editar'
-                                onClick={ event => {
-                                    verPrioridad(true)
-                                }}
-                            />
-                        </h3>
-
-                        {
-                            productos.map( ({id,prioridad}) => {
-                                return (
-                                    <div className='productos-row prioridad'>
-                                        <div key={id} id={id} className={`tag ${prioridad}`}>{prioridad}</div>
-                                    </div>
-                                )
-                            })
-                        }
-
-                        </div>
-
-
-
-
-
-            {/* ------- TIPOS --------------------------------------------------------------------------------------------- */}
-
-                        <div className="productos-col tipos">
-
+                    {/* TIPO ------------------------------------------------- */}
+                        <div className="productos-row heading tipo tagging">
                             <h3>
                                 Tipo
                                 <MdEdit className='icono-editar'
@@ -592,22 +650,171 @@ function Productos(){
                                     }}
                                 />
                             </h3>
-
-                            {
-                                productos.map( ({id,tipo}) => {
-                                    return (
-                                        <div className='productos-row tipo'>
-                                            <div key={id} id={id} className={`tag ${tipo}`}>{tipo}</div>
-                                        </div>
-                                    )
-                                })
-                            }
                         </div>
-            
- 
+
+
                     </section>
 
+
+
+
+
+{/* ------------------- TABLA PRODUCTOS ---------------------------------------------------------------------------------------------------------------------------------- */}
+
+                    {
+                        productos.map( ({id,producto,estado,precio,preciokg,mercado,cantidad,max,units,prioridad,tipo,frecuencia}) => {
+                            return ( 
+                                <>
+                                    <section className='tabla-productos contenido-tabla'>
+
+
+
+
+{/* --------------------------------------- ESTADO ------------------------------------------------------------------------------------------------------------------- */}
+
+                                        <div className="productos-row estado">
+                                            <label className="input-estado">
+
+                                                <Toggle
+                                                    defaultChecked={estado}
+                                                    icons={
+                                                        {
+                                                            checked : <BiSolidFridge />,
+                                                            unchecked : <TbShoppingBagEdit />
+                                                        }
+                                                    }
+
+                                                    onChange={ event => {
+
+                                                        console.log(estado)
+
+                            /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
+
+                                                        fetch("http://localhost:4000/productos/editar/estado",
+                                                            {
+                                                                method : "PUT",
+                                                                body : JSON.stringify(
+                                                                    {
+                                                                        id : id,
+                                                                        estado : !estado
+                                                                    }
+                                                                ),
+                                                                headers : {
+                                                                    "Content-type" : "application/json"
+                                                                }
+                                                            }
+                                                        )
+                                                        .then( res => res.json())
+                                                    }}
+                                                />
+                                            </label>
+                                        </div>
+
+
+
+
+
+{/* --------------------------------------- PRODUCTOS ------------------------------------------------------------------------------------------------------------------ */}
+                                        
+                                        <div className="productos-row producto" key={id}
+                                            
+                                            onClick={ event => {
+                                                /* Abrir ventana de Producto --> Producto.jsx */
+                                                setStatusProducto(true)
+
+                                                /* Guardar los datos en variables para Productos */
+                                                setProductoId(id)
+                                                setProducto(producto)
+                                                setEstado(estado)
+                                                setPrecio(precio)
+                                                setPrecioKg(preciokg)
+                                                setCantidad(cantidad)
+                                                setMax(max)
+                                                setUnits(units)
+                                                setFrecuencia(frecuencia)
+
+                                                /* Utilizar los datos con los primary key (id) de Mercado,Prioridad y Tipo, ya que están unidos a Productos por un join */
+                                                /* También extraer Cantidad y Cantidad Ud. que están combinados desde el back */
+                                                productosInfo.filter( producto => producto.id == id ).map(({id,cantidad,cantidadud,mercado,prioridad,tipo}) => {
+                                                    setProductoInfoCantidad(cantidad)
+                                                    setProductoInfoCantidadUd(cantidadud)
+                                                    setProductoMercado(mercado)
+                                                    setProductoPrioridad(prioridad)
+                                                    setProductoTipo(tipo)
+                                                })
+                                            
+                                            }}
+                                        >
+            
+                                            <p className='productos-cont'>{producto}</p>
+                                        </div>
+                                        
+
+
+
+
+{/* --------------------------------------- PRECIO & PRECIO KG ---------------------------------------------------------------------------------------------------------- */}
+
+                                        <div className='productos-row precio'>
+                                            <p className='productos-cont'>{precio}€</p>
+                                        </div>
+                                        
+
+                                        <div className="productos-row preciokg">
+                                            <p className="productos-cont">{preciokg}€/kg</p>
+                                        </div>
+
+
+
+
+
+{/* --------------------------------------- CANTIDAD,UNITS,MAX -------------------------------------------------------------------------------------------------------------- */}
+                                        
+                                        <div className="productos-row cantidad">
+                                            <p className='productos-cont'>{cantidad}</p>
+                                        </div>
+
+
+                                        <div className="productos-row single-number">
+                                            {units}
+                                        </div>
+                                        
+                                        
+                                        <div className="productos-row single-number">
+                                            {max}
+                                        </div>                                
+
+
+
+
+
+{/* --------------------------------------- MERCADO, PRIORIDAD, TIPO ----------------------------------------------------------------------------------------------------------------*/}
+                                        
+                                        <div className="productos-row mercado">
+                                            <div className={`tag ${mercado}`}>{mercado}</div>
+                                        </div>
+
+
+                                        <div className="productos-row prioridad">
+                                            <div className={`tag ${prioridad}`}>{prioridad}</div>
+                                        </div>
+                                        
+                                        
+                                        <div className="productos-row tipo">
+                                            <div className={`tag ${tipo}`}>{tipo}</div>
+                                        </div>
+                                        
+
+                                    </section>
+                            
+                                
+                                </> 
+                            )
+                        })
+                    }
                 </section>
+
+
 
 
 
@@ -623,18 +830,28 @@ function Productos(){
 
                         delProducto={delProducto}
 
-                        editarProducto={editarProducto} 
-                        editarProductoMercado={editarProductoMercado}
+                        editarProducto={editarProducto}
+                        editarProductoEstado={editarProductoEstado}
                         editarProductoPrecio={editarProductoPrecio}
-                        editarProductoPrioridad={editarProductoPrioridad}
+                        editarProductoPrecioKg={editarProductoPrecioKg}
+                        editarProductoCantidad={editarProductoCantidad}
+                        editarProductoUnits={editarProductoUnits}
                         editarProductoMax={editarProductoMax}
+                        editarProductoMercado={editarProductoMercado}
+                        editarProductoPrioridad={editarProductoPrioridad}
+                        editarProductoTipo={editarProductoTipo}
+                        editarProductoFrecuencia={editarProductoFrecuencia}
 
                         
-                        id={productoId} producto={producto} precio={precio}
+                        id={productoId} producto={producto} estado={estado} precio={precio} precioKg={precioKg}
+                        cantidad={cantidad} max={max} units={units} frecuencia={frecuencia}
+
+                        productoInfoCantidad={productoInfoCantidad} productoInfoCantidadUd={productoInfoCantidadUd}
                         mercados={mercados} productoMercado={productoMercado}
                         prioridadLista={prioridadLista} productoPrioridad={productoPrioridad}
                         tipos={tipos} productoTipo={productoTipo}
-                        max={max} units={units}
+                        cantidadLista={cantidadLista} cantidadUdLista={cantidadUdLista}
+                        
                     />
                     : ""
                 }

@@ -8,6 +8,7 @@ body,form,input,button,select{
   font-family: "Montserrat", sans-serif;
   background-color: rgb(32, 37, 56);
   color: white;
+  overflow-x: hidden;
 }
 
 a{
@@ -15,6 +16,23 @@ a{
   color: inherit;
 }
 
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff5a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(142, 160, 236);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(178, 193, 255);
+}
 
 
 /* FONT SIZE */
@@ -31,6 +49,9 @@ h4{
   font-weight: 400;
   font-size: 18px;
 }
+.productos-row.heading.single-number h3{
+  font-size: 14px;
+}
 
 input,select{
   font-size: 16px;
@@ -43,6 +64,7 @@ input,select{
 
 .mensaje-error{
   font-size: 12px;
+  bottom: -15px;
   position: absolute;
   color: red;
 }
@@ -63,8 +85,7 @@ input,select{
 
 header{
   width: 100vw;
-  padding: 25px;
-  border: 2px solid red;
+  padding: 40px 40px 20px;
 }
 
 header .title{
@@ -77,26 +98,30 @@ header .title{
 /* MENU ---------------------------------------------------------------------------------- */
 
 .menu{
-  margin: 25px;
-  border: 2px solid blue;
+  margin: 10px 25px;
   height: max-content;
 }
 
 .menu ul{
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .menu ul li{
   list-style: none;
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
-.menu ul li:not(:last-child){
-  border-right: 1px solid black;
+.menu ul li.gasto{
+  border-left: 1px solid rgb(255, 255, 255);
+  border-right: 1px solid rgb(255, 255, 255);
 }
 
 .menu .clicked{
-  background-color: grey;
+  background-color: rgb(41, 47, 72);
 }
 
 .menu-link{
@@ -158,7 +183,7 @@ header .title{
 
 .pop-out{
   animation-name: popout;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
 }
 
 @keyframes popup{
@@ -197,6 +222,8 @@ header .title{
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-weight: 500;
 }
+
+/* MERCADOS */
 .tag.Mercadona{
   background-color: #229e6b;
   color: rgba(0, 0, 0, 0.75);
@@ -219,6 +246,9 @@ header .title{
   background-color: #009b4d;
   color: black;
 }
+
+
+/* PRIORIDAD */
 .tag.importante{
   background-color: rgb(240, 204, 73);
   color: black;
@@ -231,11 +261,62 @@ header .title{
   background-color: rgb(240, 107, 107);
   color: black;
 }
-.tag.basico{
+
+
+/* TIPOS */
+.tag.basico,.tag.otro{
   background-color: gray;
   color: white;
 }
+.tag.queso{
+  background-color: rgb(226, 198, 70);
+  color: black;
+}
+.tag.verdura{
+  background-color: green;
+}
+.tag.fruta{
+  background-color: rgb(219, 164, 86);
+  color: black;
+}
+.tag.carne{
+  background-color: #c2535a;
+}
+.tag.especias{
+  background-color: rgb(125, 53, 31);
+}
+.tag.frito{
+  background-color: rgb(216, 216, 112);
+  color: black;
+}
+.tag.salsa{
+  background-color: brown;
+}
+.tag.limpieza{
+  background-color: rgb(80, 174, 174);
+  color: black;
+}
+.tag.casa{
+  background-color: rgb(117, 69, 27);
+}
+.tag.frutos.secos{
+  background-color: #846947;
+}
 
+
+
+/* FRECUENCIA */
+.tag.mensual{
+  background-color: rgb(108, 185, 236);
+  color: black;
+}
+.tag.ocasional{
+  background-color: rgb(227, 175, 80);
+  color: black;
+}
+
+
+/* PRECIO */
 .tag-precio{
   margin: 0 5px;
   width: 50px;
@@ -355,6 +436,7 @@ header .title{
 /* ICONOS */
 
 .icono-add{
+  padding: 5px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.50);
   backdrop-filter: blur(3px);
@@ -363,12 +445,11 @@ header .title{
   position: fixed;
   right: 30px;
   bottom: 70px;
+  width: 35px;
+  height: 35px;
 }
 
 .icono-add svg{
-  width: 35px;
-  height: 30px;
-  padding-top: 4px;
   color: white;
 }
 

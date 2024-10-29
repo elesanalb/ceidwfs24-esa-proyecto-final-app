@@ -4,14 +4,86 @@
 
 .contenedor-tabla{
     overflow-x: scroll;
+    margin-top: 20px;
+    padding-bottom: 5px;
+}
+
+.tab-frecuencia{
+    display: flex;
+    align-items: flex-end;
+    height: 35px;
+}
+
+.tab-frecuencia div{
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.tab-actual{
+    color: white;
+    border: 1px solid rgb(255, 255, 255);
+    border-bottom: none;
+    background-color: rgb(41, 47, 72);
+    height: 35px;
+    animation-name: tab-change-up;
+    animation-duration: 0.3s;
+}
+
+.tab-oculta{
+    color: rgba(255, 255, 255, 0.5);
+    height: 30px;
+    animation-name: tab-change-down;
+    animation-duration: 0.3s;
+    background-color: rgb(24, 28, 42);
+    margin-bottom: 2px;
+}
+
+
+@keyframes tab-change-up {
+    from{
+        margin-bottom: 2px;
+        height: 30px;
+    }
+    to{
+        margin-bottom: 0;
+        height: 35px;
+    }
+}
+
+@keyframes tab-change-down {
+    from{
+        margin-bottom: 0;
+        height: 35px;
+    }
+    to{
+        margin-bottom: 2px;
+        height: 30px;
+    }
 }
 
 .tabla-productos{
     width: 200%;
-    padding: 20px 0 50px;
+    /* padding: 20px 0 50px; */
     display: grid;
+    grid-template-columns: repeat(10,auto);
     width: fit-content;
 }
+
+.tabla-productos{
+    margin-top: -1px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.tabla-productos.headings{
+    background-color: rgb(41, 47, 72);
+    border-top: 1px solid white;
+    z-index: 2;
+}
+.tabla-productos.contenido-tabla:last-child{
+    border-bottom: 1px solid white;
+}
+
 
 
 
@@ -21,64 +93,128 @@
 
 /* TABLA PRODUCTOS */
 
-.productos-col{
-    width: max-content;
-    border: 2px solid;
-    display: flex;
-    flex-direction: column;
-}
-
-.productos-col h3{
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-}
-.productos-col h3 svg{
-    margin-left: 5px;
-}
-
 .productos-row{
-    border: 1px dashed;
+    border: 1px dashed gray;
     height: 50px;
     padding: 15px;
 }
 
-
-
-.producto{ 
-    border-color: rgb(105, 168, 105);
-    width: 200px;
+.productos-row.heading{
+    padding: 15px 20px;
 }
-.producto .productos-row{
+
+.productos-row h3{
+    display: flex;
+    align-items: center;
+}
+.productos-row h3 svg{
+    margin-left: 5px;
+}
+
+
+
+
+/* Producto ----------------------------------------- */
+
+.productos-row.producto{
+    border-color: rgb(105, 168, 105);
+    width: 180px;
     display: flex;
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
-.producto .productos-cont{
+
+.productos-cont{
     text-wrap: nowrap;
     overflow-x: hidden;
 }
 
 
-.mercado{ 
-    border-color: rgb(170, 73, 73) ;
+
+/* Estado ---------------------------------------------- */
+
+.productos-row.estado{
+    width: 95px;
+}
+
+.productos-row.heading.estado{
+    display: flex;
+    justify-content: center;
 }
 
 
 
-.precio{ border-color: rgb(195, 164, 108); }
+/* Precio & Precio Kg ----------------------------------------------- */
+
+.productos-row.precio{
+    border-color: rgb(195, 164, 108);
+    width: 85px;
+}
+
+.productos-row.heading.precio{
+    display: flex;
+    justify-content: center;
+}
+
+.productos-row.preciokg{
+    border-color: rgb(195, 164, 108);
+    width: 100px;
+}
+
+.productos-row.heading.preciokg{
+    display: flex;
+    justify-content: center;
+    text-wrap: nowrap;
+}
 
 
 
-.prioridad{ border-color: rgb(186, 128, 186); }
+/* Cantidad,max,units ------------------------------------------------ */
+
+.productos-row.cantidad{
+    border-color: rgb(152, 186, 132);
+    width: 100px;
+}
+
+.productos-row.single-number{
+    border-color: rgb(128, 216, 216);
+    width: 50px;
+    display: flex;
+    justify-content: center;
+}
+.productos-row.heading.single-number{
+    padding: 0;
+}
+.productos-row.heading.single-number h3{
+    margin-top: 10px;
+}
 
 
 
-.max{ border-color: rgb(128, 216, 216); }
+/* Mercado ---------------------------------------------------------- */
+
+.productos-row.heading.tagging{
+    padding-right: 0;
+}
+
+.productos-row.mercado{ 
+    border-color: rgb(170, 73, 73);
+    width: 150px;
+}
+
+.productos-row.prioridad{
+    border-color: rgb(186, 128, 186);
+    width: 155px;
+}
+
+.productos-row.tipo{
+    border-color: rgb(145, 101, 101);
+    width: 130px;
+    overflow: hidden;
+}
 
 
-.units{ border-color: rgb(145, 101, 101);}
 
 
 
@@ -96,7 +232,7 @@
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
-.item-vacio{ color: rgb(69, 69, 69); }
+.item-vacio{ color: rgba(255, 255, 255, 0.25); }
 .nombre-item{ color: white; }
 
 .producto-form{
@@ -105,13 +241,21 @@
     flex-direction: column;
     max-height: 430px;
 }
+.producto-form.producto-nuevo{
+    max-height: 370px;
+}
 
 .producto-form .contenedor-input{
     overflow-y: scroll;
 }
 
+.campo-nombre.campo-obligatorio span{
+    color: rgb(255, 116, 116);
+}
+
 .producto-form div.input{
     margin-top: 20px;
+    position: relative;
 }
 
 div.multi-input{
@@ -151,9 +295,17 @@ div.multi-input{
 }
 
 .producto-form input:not(input[type="submit"]) ,select{
-    border: 1px solid grey;
     padding: 5px 10px;
 }
+
+.estado-input{
+    border: 1px solid grey;
+}
+
+.error-input{
+    border: 1px solid red;
+}
+
 
 .producto-form div.input,select{
     width: 100%;
@@ -183,13 +335,22 @@ div.multi-input{
 .input-cantidad div{
     display: flex;
 }
-.input-cantidad select,.input-cantidad input{
-    width: 60px;
+.input-cantidad input{
+    width: 70px;
     margin-right: 5px;
+    padding-right: 0;
+}
+.input-cantidad datalist{
+    appearance: none;
+    -webkit-appearance: none;
 }
 
-.input-cantidad.unidad select,.input-cantidad.unidad input{
-    width: 35px;
+.input-cantidad input::-webkit-calendar-picker-indicator,datalist::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+.input-cantidad.unidad input{
+    width: 50px;
 }
 
 .input-estado{
@@ -216,7 +377,6 @@ div.multi-input{
 
 
 
-
 /* ______________________________________________________________________ */
 
 
@@ -235,6 +395,7 @@ div.multi-input{
 
 .resumen div.info-producto{
     margin-top: 20px;
+    justify-content: space-between;
 }
 
 .resumen .info-producto.tags{
@@ -250,6 +411,9 @@ div.multi-input{
 
 .resumen-grid{
     display: grid;
+}
+.resumen-grid.precio{
+    grid-template-columns: repeat(3,auto);
 }
 
 .resumen .precio h5{

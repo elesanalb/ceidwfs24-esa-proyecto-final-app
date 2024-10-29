@@ -1,9 +1,14 @@
 import { useState } from "react"
 import ProductoEditar from "./ProductoEditar.jsx";
 
+import Toggle from 'react-toggle'
+import "react-toggle/style.css"
+
 import { FaRegEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { BiSolidFridge } from "react-icons/bi";
+import { TbShoppingBagEdit } from "react-icons/tb";
 
 
 
@@ -14,25 +19,27 @@ function Producto(
         verProducto,
 
         delProducto,
-        editarProducto,editarProductoMercado,editarProductoPrecio,editarProductoPrioridad,editarProductoMax,
 
-        id,producto,precio,
+        editarProducto,editarProductoEstado,editarProductoPrecio,editarProductoPrecioKg,
+        editarProductoCantidad,editarProductoUnits,editarProductoMax,
+        editarProductoMercado,editarProductoPrioridad,editarProductoTipo,editarProductoFrecuencia,
+
+        id,producto,estado,precio,precioKg,cantidad,units,max,frecuencia,
+        productoInfoCantidad,productoInfoCantidadUd,
         mercados,productoMercado,
         prioridadLista,productoPrioridad,
         tipos,productoTipo,
-        max,units
+        cantidadLista,cantidadUdLista        
     }
 ){
+    
+/* VARIABLES */
+/* POPUP ANIMACION */
 
-/* VARIABLES & HOOKS  */
-
-    let [maxCompra,setMaxCompra] = useState([false,false])
-
-
-
+    let [statusPopup,setStatusPopup] = useState(true)
 
 
-/* --------------------------------------------------------------------------------------------- */
+
 
 /* EDITAR */
 /* Estado ventana ProductoEditar */
@@ -61,9 +68,9 @@ function Producto(
             {/* Tap fuera para salir de la ventana ------------ */}
             
                 <div className="tap-fuera"
-               
-               onClick={ event => {
-                        verProducto(false)
+                    onClick={ event => {
+                        setStatusPopup(false)
+                        setTimeout( () => { verProducto(false) },250)
                     }}
                 ></div>
                 
@@ -73,25 +80,34 @@ function Producto(
 
 
 
-                <div className="resumen pop-up">
+                <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" }`}>
 
 
-{/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
+
+
+
+{/* --------------- BOTONES ------------------------------------------------------------------------------------- */}
                         
                     <div className="seccion-botones top-botones">
 
                         <IoMdClose className="boton-icono cerrar"
                             onClick={ event => {
-                                verProducto(false)
+                                setStatusPopup(false)
+                                setTimeout( () => { verProducto(false) },250)
                             }}
                         />
 
 
+
+
+{/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
+
                         <FaTrash className="boton-icono borrar"
                             onClick={ event => {
-                                verProducto(false)
-
+                                setStatusPopup(false)
+                                setTimeout( () => { verProducto(false) },250)
                                 
+
                                 fetch("http://localhost:4000/productos/borrar",
                                     {
                                         method : "DELETE",
@@ -121,6 +137,8 @@ function Producto(
                     <div className="info-producto">
                         <h2>{producto}</h2>
                     </div>
+
+
                     
 
 
@@ -146,6 +164,12 @@ function Producto(
                             }
                         </div>
 
+                        <div className={`tag ${ frecuencia == 1 ? "mensual" : "ocasional" }`}>
+                            {
+                                frecuencia == 1 ? "mensual" : "ocasional"
+                            }
+                        </div>
+
                     </div>
 
 
@@ -163,9 +187,9 @@ function Producto(
                         <h5>Precio/kg</h5>
                         
                         {/* filas */}
-                        <p className=''>{precio}€</p>
-                        <p>20g</p>
-                        <p className="">{precio}€</p>
+                        <p>{precio}€</p>
+                        <p>{cantidad}</p>
+                        <p>{precioKg}€</p>
                         
                     </div>
 
@@ -173,23 +197,79 @@ function Producto(
 
 { /* -------------- INFO ---------------------------------------------------------------- */}
 
-                    <div className="info-producto resumen-grid"
-                        style={{ gridTemplateColumns : "repeat(3,auto)" }}
-                    >
-                        {/* columnas */}
-                        <h5>Units</h5>
-                        <h5>Max</h5>
-                        <h5>Compras</h5>
+                    <div className="info-producto">
+
+                        <div>
+                            <h5>Units</h5>
+                            <p>{units}</p>
+                        </div>
+
+
+                        <div>
+                            <h5>Max</h5>
+                            <p>{max}</p>
+                        </div>
                         
-                        {/* filas */}
-                        <p>{units}</p>
-                        <p>{max}</p>
-                        <p>{max}</p>
+
+
+                        <div>
+
+                            <h5>Estado</h5>
+
+
+                            <label className="input-estado">
+
+                                <Toggle
+                                    defaultChecked={estado}
+                                    icons={
+                                        {
+                                            checked : <BiSolidFridge />,
+                                            unchecked : <TbShoppingBagEdit />
+                                        }
+                                    }
+
+                                    onChange={ event => {
+
+                                /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
+
+                                        fetch("http://localhost:4000/productos/editar/estado",
+                                            {
+                                                method : "PUT",
+                                                body : JSON.stringify(
+                                                    {
+                                                        id : id,
+                                                        estado : !estado
+                                                    }
+                                                ),
+                                                headers : {
+                                                    "Content-type" : "application/json"
+                                                }
+                                            }
+                                        )
+                                        .then( res => res.json())
+                                        .then( res => {
+                                            /*editarProductoEstado(
+                                                {
+                                                    id : id,
+                                                    estado : !estado
+                                                }
+                                            )*/
+                                        })
+
+                                    }}
+                                />
+                            </label>
+
+                        </div>
                         
                         
                     </div>
 
                     
+
+
+{/* --------------- Mensaje aviso ------------------------------------------------------------------------------------------------------------------------------------- */}
+
                     <div className="info-producto">
                         <p className="mensaje-aviso">Se mostrarán valores por defecto en los campos que se dejaron vacíos.</p>        
                     </div>
@@ -197,8 +277,7 @@ function Producto(
 
 
 
-
-{ /* -------------- BOTONES --------------------------------------------------------------------------- */}
+{ /* -------------- BOTONES --------------------------------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="seccion-botones">
 
@@ -230,17 +309,25 @@ function Producto(
                         verProducto={verProducto}
 
                         editarProducto={editarProducto}
-                        editarProductoMercado={editarProductoMercado}
+                        editarProductoEstado={editarProductoEstado}
                         editarProductoPrecio={editarProductoPrecio}
-                        editarProductoPrioridad={editarProductoPrioridad}
+                        editarProductoPrecioKg={editarProductoPrecioKg}
+                        editarProductoCantidad={editarProductoCantidad}
+                        editarProductoUnits={editarProductoUnits}
                         editarProductoMax={editarProductoMax}
+                        editarProductoMercado={editarProductoMercado}
+                        editarProductoPrioridad={editarProductoPrioridad}
+                        editarProductoTipo={editarProductoTipo}
+                        editarProductoFrecuencia={editarProductoFrecuencia}
                         
                         
-                        id={id} producto={producto} precio={precio}
+                        id={id} producto={producto} estado={estado} precio={precio} precioKg={precioKg}
+                        max={max} units={units} frecuencia={frecuencia}
+                        productoInfoCantidad={productoInfoCantidad} productoInfoCantidadUd={productoInfoCantidadUd}
                         mercados={mercados} productoMercado={productoMercado}
                         prioridadLista={prioridadLista} productoPrioridad={productoPrioridad}
                         tipos={tipos} productoTipo={productoTipo}
-                        max={max} units={units}
+                        cantidadLista={cantidadLista} cantidadUdLista={cantidadUdLista}
                     /> 
                         
                     : ""

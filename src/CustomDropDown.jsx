@@ -17,12 +17,10 @@ class CustomDropDown extends Component {
   dropDownComp() {
     return (
       <select onChange={e => this.dropDownChanged(e)}>
-        <option value="0" disabled selected></option>
-        <option value="custom">Otro...</option>
-        <option value="1">{this.props.option}</option>
-        <option value="2">{this.props.option}</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
         <option value="3">Option 3</option>
-        
+        <option value="custom">Type Your own</option>
       </select>
     );
   }

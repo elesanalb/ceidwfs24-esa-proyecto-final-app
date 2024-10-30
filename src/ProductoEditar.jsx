@@ -130,7 +130,7 @@ function ProductoEditar(
 
                             }else if( inputItem.trim() != "" && inputItem != producto ){
 
-                                fetch("http://localhost:4000/productos/editar/producto",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/producto",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -176,7 +176,7 @@ function ProductoEditar(
 
                             }else{
 
-                                fetch("http://localhost:4000/productos/editar/estado",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/estado",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -234,7 +234,7 @@ function ProductoEditar(
 
                             }else if( inputPrecio && inputPrecio != precio ){
 
-                                fetch("http://localhost:4000/productos/editar/precio",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/precio",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -286,7 +286,7 @@ function ProductoEditar(
                             }
                             else if( inputPrecioKg && inputPrecioKg != precioKg ){
 
-                                fetch("http://localhost:4000/productos/editar/preciokg",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/preciokg",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -334,7 +334,7 @@ function ProductoEditar(
 
                             }else if( seleccionMercado && seleccionMercado != productoMercado ){
                                 
-                                fetch("http://localhost:4000/productos/editar/mercado",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/mercado",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -411,7 +411,7 @@ function ProductoEditar(
                                     && ( inputCantidadUd && inputCantidadUd != productoInfoCantidadUd ) 
                             ){
                                 
-                                fetch("http://localhost:4000/productos/editar/cantidad",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/cantidad",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -451,7 +451,7 @@ function ProductoEditar(
                                     && ( !inputCantidadUd || inputCantidadUd == "" || inputCantidadUd == productoInfoCantidadUd || inputCantidadUd.length > 4 || !Number.isNaN(Number(inputCantidadUd)) )
                             ){
                               
-                                fetch("http://localhost:4000/productos/editar/cantidad",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/cantidad",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -491,7 +491,7 @@ function ProductoEditar(
                                     && ( !inputCantidad || inputCantidad == "" || inputCantidad == productoInfoCantidad )
                             ){
 
-                                fetch("http://localhost:4000/productos/editar/cantidad",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/cantidad",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -549,7 +549,7 @@ function ProductoEditar(
 
                             }else if( inputMax && inputMax != max && inputMax.toString().length < 3 ){
 
-                                fetch("http://localhost:4000/productos/editar/max",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/max",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -605,7 +605,7 @@ function ProductoEditar(
 
                             }else if( inputUnits && inputUnits != units && inputUnits.toString().length < 3 ){
 
-                                fetch("http://localhost:4000/productos/editar/units",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/units",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -653,7 +653,7 @@ function ProductoEditar(
                                 
                             }else if( seleccionPrioridad != productoPrioridad ){
 
-                                fetch("http://localhost:4000/productos/editar/prioridad",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/prioridad",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -697,7 +697,7 @@ function ProductoEditar(
 
                             }else if( seleccionTipo != productoTipo ){
                                
-                                fetch("http://localhost:4000/productos/editar/tipo",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/tipo",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(
@@ -741,7 +741,7 @@ function ProductoEditar(
 
                             }else if( seleccionFrecuencia != frecuencia ){
                             
-                                fetch("http://localhost:4000/productos/editar/frecuencia",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/frecuencia",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(

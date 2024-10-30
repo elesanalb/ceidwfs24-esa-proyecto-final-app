@@ -6,7 +6,7 @@
 *       -useState, useEffect
 *
 *   Datos : 
-*       - API fetch a http://localhost:4000
+*       - API fetch a https://ceidwfs24-esa-proyecto-final-back.onrender.com
 *
 *   Estructura :
 *       - Cabecera --> Header.jsx
@@ -37,7 +37,7 @@ function App() {
     let [productosCompra,setProductosCompra] = useState([])
 
     useEffect( () => {
-        fetch("http://localhost:4000/productos/compra",
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/compra",
             {
                 method : "POST",
                 body : JSON.stringify({ filtromercado : "" }),
@@ -59,7 +59,7 @@ function App() {
     let [mercados,setMercados] = useState([])
         
     useEffect( () => {
-        fetch("http://localhost:4000/mercados")
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/mercados")
         .then( res => res.json())
         .then( mercados => {
             setMercados(mercados)
@@ -73,7 +73,7 @@ function App() {
     let [prioridadLista,setPrioridadLista] = useState([])
 
     useEffect( () => {
-        fetch("http://localhost:4000/prioridad")
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad")
         .then( res => res.json())
         .then( prioridad => {
             setPrioridadLista(prioridad)
@@ -87,7 +87,7 @@ function App() {
     let [tipos,setTipos] = useState([])
 
     useEffect( () => {
-        fetch("http://localhost:4000/tipos")
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos")
         .then( res => res.json())
         .then( tipos => {
             setTipos(tipos)

@@ -26,14 +26,26 @@ let [inputAdd,setInputAdd] = useState("")
 let [inputEditar,setInputEditar] = useState("")
 
 
-/* Estado añadir mercado --------------------------------------- */
+
+/* Estado añadir mercado -------------------------------------------- */
+
 let [statusAdd,setStatusAdd] = useState(false)
 let [statusInputAdd,setStatusInputAdd] = useState(true)
 
 
-/* Estado editar mercado */
+
+/* Estado editar mercado --------------------------------------------- */
+
 let [statusEditar,setStatusEditar] = useState(false)
 let [editarId,setEditarId] = useState()
+
+
+
+
+
+/* POPUP ANIMACION */
+
+let [statusPopup,setStatusPopup] = useState(true)
 
 
 
@@ -57,8 +69,10 @@ let [editarId,setEditarId] = useState()
                 <div className="tap-fuera"
             
                     onClick={ event => {
-                                verMercados(false)
-                            }}
+                        setStatusPopup(false)
+                        setTimeout( () => { verMercados(false) },250)
+                        
+                    }}
                 ></div>
     
             {/* ----------------------------------------------- */}
@@ -67,7 +81,7 @@ let [editarId,setEditarId] = useState()
 
 
 
-                <div className="resumen pop-up">
+                <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" } `}>
 
 
             {/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
@@ -76,7 +90,8 @@ let [editarId,setEditarId] = useState()
 
                         <IoMdClose className="boton-icono cerrar"
                             onClick={ event => {
-                                verMercados(false)
+                                setStatusPopup(false)
+                                setTimeout( () => { verMercados(false) },250)
                             }}
                         />
 
@@ -131,7 +146,7 @@ let [editarId,setEditarId] = useState()
 /* --------------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------------- */
                                                         /*  ------ EDITAR MERCADO --------------------------------------------------------------------- */
                                                                    
-                                                                    fetch("http://localhost:4000/mercados/editar",
+                                                                    fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/mercados/editar",
                                                                         {
                                                                             method : "PUT",
                                                                             body : JSON.stringify({ id : id, mercado : inputEditar }),
@@ -177,7 +192,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------- */
                                                     /* --- BORRAR MERCADO --------------------------------------------------------------------- */
 
-                                                            fetch("http://localhost:4000/mercados/borrar",
+                                                            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/mercados/borrar",
                                                                 {
                                                                     method : "DELETE",
                                                                     body : JSON.stringify({ id : id }),
@@ -243,7 +258,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------ PETICION A LA API ------------------------------------------------------------------------------- */
                                         /* -------- AÑADIR MERCADO ----------------------------------------------------- */
 
-                                                        fetch("http://localhost:4000/mercados/nuevo",
+                                                        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/mercados/nuevo",
                                                             {
                                                                 method : "POST",
                                                                 body : JSON.stringify({ mercado : inputAdd }),

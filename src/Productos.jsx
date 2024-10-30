@@ -7,7 +7,7 @@
 *       - Link, useOutlet
 *
 *   Datos : 
-*       - API fetch a http://localhost:4000
+*       - API fetch a https://ceidwfs24-esa-proyecto-final-back.onrender.com
 *
 *   Estructura :
 *       - Cabecera --> Header.jsx
@@ -63,7 +63,7 @@ function Productos(){
         let [productos,setProductos] = useState([])
         
         useEffect( () => {
-            fetch("http://localhost:4000/productos/frecuencia",
+            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos",
                 {
                     method : "POST",
                     body : JSON.stringify({ frecuencia : "1" }),
@@ -82,7 +82,7 @@ function Productos(){
         let [productosInfo,setProductosInfo] = useState([])
 
         useEffect( () => {
-            fetch("http://localhost:4000/productos/info")
+            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/info")
             .then( res => res.json() )
             .then( productos => {
                 setProductosInfo(productos)
@@ -96,7 +96,7 @@ function Productos(){
         let [mercados,setMercados] = useState([])
         
         useEffect( () => {
-            fetch("http://localhost:4000/mercados")
+            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/mercados")
             .then( res => res.json())
             .then( mercados => {
                 setMercados(mercados)
@@ -110,7 +110,7 @@ function Productos(){
     let [prioridadLista,setPrioridadLista] = useState([])
    
     useEffect( () => {
-        fetch("http://localhost:4000/prioridad")
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad")
         .then( res => res.json())
         .then( prioridad => {
             setPrioridadLista(prioridad)
@@ -123,7 +123,7 @@ function Productos(){
 
     let [tipos,setTipos] = useState([])
     useEffect( () => {
-        fetch("http://localhost:4000/tipos")
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos")
         .then( res => res.json())
         .then( tipos => {
             setTipos(tipos)
@@ -141,7 +141,7 @@ function Productos(){
     let [statusTab,setStatusTab] = useState(false)
 
     function productosFrecuencia(frecuencia){
-        fetch("http://localhost:4000/productos/frecuencia",
+        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos",
             {
                 method : "POST",
                 body : JSON.stringify({ frecuencia : frecuencia }),
@@ -690,7 +690,7 @@ function Productos(){
 
                             /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
 
-                                                        fetch("http://localhost:4000/productos/editar/estado",
+                                                        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/estado",
                                                             {
                                                                 method : "PUT",
                                                                 body : JSON.stringify(
@@ -761,7 +761,13 @@ function Productos(){
                                         
 
                                         <div className="productos-row preciokg">
-                                            <p className="productos-cont">{preciokg}€/kg</p>
+                                            <p className="productos-cont">
+                                                {preciokg}
+                                                {
+                                                    preciokg ? "€/kg" : ""
+                                                }
+                                                
+                                            </p>
                                         </div>
 
 

@@ -108,7 +108,7 @@ function Producto(
                                 setTimeout( () => { verProducto(false) },250)
                                 
 
-                                fetch("http://localhost:4000/productos/borrar",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/borrar",
                                     {
                                         method : "DELETE",
                                         body : JSON.stringify({ id : id }),
@@ -189,7 +189,12 @@ function Producto(
                         {/* filas */}
                         <p>{precio}€</p>
                         <p>{cantidad}</p>
-                        <p>{precioKg}€</p>
+                        <p>
+                            {precioKg}
+                            {
+                                precioKg ? "€/kg" : ""
+                            }
+                        </p>
                         
                     </div>
 
@@ -232,7 +237,7 @@ function Producto(
 
                                 /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
 
-                                        fetch("http://localhost:4000/productos/editar/estado",
+                                        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/estado",
                                             {
                                                 method : "PUT",
                                                 body : JSON.stringify(

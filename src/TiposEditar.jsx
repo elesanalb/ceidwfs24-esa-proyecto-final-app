@@ -26,16 +26,25 @@ let [inputAdd,setInputAdd] = useState("")
 let [inputEditar,setInputEditar] = useState("")
 
 
+
 /* Estado añadir tipo --------------------------------------- */
+
 let [statusAdd,setStatusAdd] = useState(false)
 let [statusInputAdd,setStatusInputAdd] = useState(true)
 
 
-/* Estado editar tipo */
+
+/* Estado editar tipo -------------------------------------------- */
+
 let [statusEditar,setStatusEditar] = useState(false)
 let [editarId,setEditarId] = useState()
 
 
+
+
+/* POPUP ANIMACION */
+
+let [statusPopup,setStatusPopup] = useState(true)
 
 
 
@@ -57,8 +66,9 @@ let [editarId,setEditarId] = useState()
                 <div className="tap-fuera"
             
                     onClick={ event => {
-                                verTipos(false)
-                            }}
+                        setStatusPopup(false)
+                        setTimeout( () => { verTipos(false) },250)
+                    }}
                 ></div>
     
             {/* ----------------------------------------------- */}
@@ -67,7 +77,7 @@ let [editarId,setEditarId] = useState()
 
 
 
-                <div className="resumen pop-up">
+                <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" }`}>
 
 
             {/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
@@ -76,7 +86,8 @@ let [editarId,setEditarId] = useState()
 
                         <IoMdClose className="boton-icono cerrar"
                             onClick={ event => {
-                                verTipos(false)
+                                setStatusPopup(false)
+                                setTimeout( () => { verTipos(false) },250)
                             }}
                         />
 
@@ -131,7 +142,7 @@ let [editarId,setEditarId] = useState()
 /* --------------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------------- */
                                                         /*  ------ EDITAR TIPO --------------------------------------------------------------------- */
 
-                                                                    fetch("http://localhost:4000/tipos/editar",
+                                                                    fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos/editar",
                                                                         {
                                                                             method : "PUT",
                                                                             body : JSON.stringify({ id : id, tipo : inputEditar }),
@@ -178,7 +189,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------- */
                                                     /* --- BORRAR TIPO --------------------------------------------------------------------- */
 
-                                                            fetch("http://localhost:4000/tipos/borrar",
+                                                            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos/borrar",
                                                                 {
                                                                     method : "DELETE",
                                                                     body : JSON.stringify({ id : id }),
@@ -243,7 +254,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------ PETICION A LA API ------------------------------------------------------------------------------- */
                                         /* -------- AÑADIR TIPO ----------------------------------------------------- */
 
-                                                        fetch("http://localhost:4000/tipos/nuevo",
+                                                        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos/nuevo",
                                                             {
                                                                 method : "POST",
                                                                 body : JSON.stringify({ tipo : inputAdd }),

@@ -127,7 +127,13 @@ let [statusPopup,setStatusPopup] = useState(true)
                         {/* filas */}
                         <p>{precio}€</p>
                         <p>{cantidad+cantidadud}</p>
-                        <p>{preciokg}€/kg</p>
+                        <p>
+                            {preciokg}
+                            {
+                                preciokg ? "€/kg" : ""
+                            }
+                            
+                        </p>
 
                     </div>
 
@@ -222,7 +228,7 @@ let [statusPopup,setStatusPopup] = useState(true)
 
 /* -------------------------------- PETICION A LA API ----------------------------------------------- */
 
-                                fetch("http://localhost:4000/productos/nuevo",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/nuevo",
                                     {
                                         method : "POST",
                                         body : JSON.stringify(

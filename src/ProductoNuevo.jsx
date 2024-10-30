@@ -58,13 +58,6 @@ function ProductoNuevo(
     if( inputEstado == undefined ){
         setInputEstado(false)
     }
-
-    if( inputCantidad == "" || inputCantidad == undefined ){
-        setInputCantidad(1)
-    }
-    if( inputCantidadUd == "" || inputCantidadUd == undefined ){
-        setInputCantidadUd("kg")
-    }
     if( inputMax == "" || inputMax == undefined ){
         setInputMax(1)
     }

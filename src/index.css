@@ -275,12 +275,12 @@ header .title{
 .tag.verdura{
   background-color: green;
 }
+.tag.carne{
+  background-color: #c2535a;
+}
 .tag.fruta{
   background-color: rgb(219, 164, 86);
   color: black;
-}
-.tag.carne{
-  background-color: #c2535a;
 }
 .tag.especias{
   background-color: rgb(125, 53, 31);
@@ -292,12 +292,12 @@ header .title{
 .tag.salsa{
   background-color: brown;
 }
+.tag.casa{
+  background-color: rgb(117, 69, 27);
+}
 .tag.limpieza{
   background-color: rgb(80, 174, 174);
   color: black;
-}
-.tag.casa{
-  background-color: rgb(117, 69, 27);
 }
 .tag.frutos.secos{
   background-color: #846947;

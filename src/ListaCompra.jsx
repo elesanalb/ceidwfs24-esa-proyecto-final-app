@@ -84,7 +84,7 @@ function ListaCompra({id,editarProductoEstado,editarProductosCompra,producto,est
 
                         /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
 
-                                fetch("http://localhost:4000/productos/editar/estado",
+                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/editar/estado",
                                     {
                                         method : "PUT",
                                         body : JSON.stringify(

@@ -26,15 +26,26 @@ let [inputAdd,setInputAdd] = useState("")
 let [inputEditar,setInputEditar] = useState("")
 
 
-/* Estado añadir prioridad --------------------------------------- */
+
+/* Estado añadir prioridad ----------------------------------------- */
+
 let [statusAdd,setStatusAdd] = useState(false)
 let [statusInputAdd,setStatusInputAdd] = useState(true)
 
 
-/* Estado editar prioridad */
+
+/* Estado editar prioridad --------------------------------------------- */
+
 let [statusEditar,setStatusEditar] = useState(false)
 let [editarId,setEditarId] = useState()
 
+
+
+
+
+/* POPUP ANIMACION */
+
+let [statusPopup,setStatusPopup] = useState(true)
 
 
 
@@ -57,8 +68,9 @@ let [editarId,setEditarId] = useState()
                 <div className="tap-fuera"
             
                     onClick={ event => {
-                                verPrioridad(false)
-                            }}
+                        setStatusPopup(false)
+                        setTimeout( () => { verPrioridad(false) },250)
+                    }}
                 ></div>
     
             {/* ----------------------------------------------- */}
@@ -67,7 +79,7 @@ let [editarId,setEditarId] = useState()
 
 
 
-                <div className="resumen pop-up">
+                <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" }`}>
 
 
             {/* ------------------- BORRAR ----------------------------------------------------------------------------- */}
@@ -76,7 +88,8 @@ let [editarId,setEditarId] = useState()
 
                         <IoMdClose className="boton-icono cerrar"
                             onClick={ event => {
-                                verPrioridad(false)
+                                setStatusPopup(false)
+                                setTimeout( () => { verPrioridad(false) },250)
                             }}
                         />
 
@@ -131,7 +144,7 @@ let [editarId,setEditarId] = useState()
 /* --------------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------------- */
                                                         /*  ------ EDITAR PRIORIDAD --------------------------------------------------------------------- */
                                                                    
-                                                                    fetch("http://localhost:4000/prioridad/editar",
+                                                                    fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad/editar",
                                                                         {
                                                                             method : "PUT",
                                                                             body : JSON.stringify({ id : id, prioridad : inputEditar }),
@@ -177,7 +190,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------------- PETICION A LA API --------------------------------------------------------------------------- */
                                                     /* --- BORRAR PRIORIDAD --------------------------------------------------------------------- */
 
-                                                            fetch("http://localhost:4000/prioridad/borrar",
+                                                            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad/borrar",
                                                                 {
                                                                     method : "DELETE",
                                                                     body : JSON.stringify({ id : id }),
@@ -243,7 +256,7 @@ let [editarId,setEditarId] = useState()
 /* ------------------------------------------------ PETICION A LA API ------------------------------------------------------------------------------- */
                                         /* -------- AÑADIR PRIORIDAD ----------------------------------------------------- */
 
-                                                        fetch("http://localhost:4000/prioridad/nueva",
+                                                        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad/nueva",
                                                             {
                                                                 method : "POST",
                                                                 body : JSON.stringify({ prioridad : inputAdd }),

@@ -144,8 +144,8 @@ let [statusPopup,setStatusPopup] = useState(true)
                     /* ------- Validacion del formulario  */
 
                             if( inputItem.trim() == "" || !inputPrecio || !seleccionMercado 
-                                || Number.isNaN(inputPrecioKg) 
-                                || Number.isNaN(inputCantidad) || !Number.isNaN(Number(inputCantidadUd)) || inputCantidadUd.length > 4
+                                || Number.isNaN(inputPrecioKg)
+                                || Number.isNaN(inputCantidad) || !Number.isNaN(Number(inputCantidadUd)) || ( inputCantidad && inputCantidadUd.length > 4 )
                                 || Number.isNaN(inputUnits) || inputUnits.toString().length > 3
                                 || Number.isNaN(inputMax) || inputMax.toString().length > 3
                             ){
@@ -324,7 +324,9 @@ let [statusPopup,setStatusPopup] = useState(true)
                                                 onChange={ event => {
                                                     setInputPrecio(Number(event.target.value))
                                                 }}
-                                            />€
+                                            />
+                                            
+                                            <p className="campo-nombre">€</p>
 
                                         </label>
                                     </div>
@@ -348,7 +350,8 @@ let [statusPopup,setStatusPopup] = useState(true)
                                                 onChange={ event => {
                                                     setInputPrecioKg(Number(event.target.value))
                                                 }}
-                                            />€/kg
+                                            />
+                                            <p className="campo-nombre">€/kg</p>
                                         
                                         </label>
 

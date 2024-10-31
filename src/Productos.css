@@ -1,70 +1,11 @@
-.seccion-productos{
-    margin: 40px 20px 100px;
-}
+/* SECCION PRODUCTOS */
 
 .contenedor-tabla{
     overflow-x: scroll;
-    margin-top: 20px;
-    padding-bottom: 5px;
-}
-
-.tab-frecuencia{
-    display: flex;
-    align-items: flex-end;
-    height: 35px;
-}
-
-.tab-frecuencia div{
-    padding: 10px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-}
-
-.tab-actual{
-    color: white;
-    border: 1px solid rgb(255, 255, 255);
-    border-bottom: none;
-    background-color: rgb(41, 47, 72);
-    height: 35px;
-    animation-name: tab-change-up;
-    animation-duration: 0.3s;
-}
-
-.tab-oculta{
-    color: rgba(255, 255, 255, 0.5);
-    height: 30px;
-    animation-name: tab-change-down;
-    animation-duration: 0.3s;
-    background-color: rgb(24, 28, 42);
-    margin-bottom: 2px;
-}
-
-
-@keyframes tab-change-up {
-    from{
-        margin-bottom: 2px;
-        height: 30px;
-    }
-    to{
-        margin-bottom: 0;
-        height: 35px;
-    }
-}
-
-@keyframes tab-change-down {
-    from{
-        margin-bottom: 0;
-        height: 35px;
-    }
-    to{
-        margin-bottom: 2px;
-        height: 30px;
-    }
 }
 
 .tabla-productos{
     width: 200%;
-    /* padding: 20px 0 50px; */
     display: grid;
     grid-template-columns: repeat(10,auto);
     width: fit-content;
@@ -75,54 +16,271 @@
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
+
 .tabla-productos.headings{
-    background-color: rgb(41, 47, 72);
     border-top: 1px solid white;
     z-index: 2;
 }
+
 .tabla-productos.contenido-tabla:last-child{
     border-bottom: 1px solid white;
 }
 
+.tab-frecuencia{
+    left: 0;
+    position: sticky;
+    display: flex;
+    align-items: flex-end;
+}
+
+.tab-actual{
+    color: white;
+    border: 1px solid rgb(255, 255, 255);
+    border-bottom: none;
+    background-color: rgb(41, 47, 72);
+    animation-name: tab-change-up;
+    animation-duration: 0.3s;
+}
+
+.tab-oculta{
+    color: rgba(255, 255, 255, 0.5);
+    animation-name: tab-change-down;
+    animation-duration: 0.3s;
+    background-color: rgb(24, 28, 42);
+}
 
 
 
 
 
-/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* TABLA PRODUCTOS */
+/* MEDIA QUERIES ------------------------------------------------------------------------------------------------------ */
+
+/* PANTALLA PEQUEÑA ------------------------------------------------------------------- */
+
+    @media screen and (min-width:781px){
+
+        .seccion-productos{
+            margin: auto;
+            max-width: 1400px;
+            padding: 0 60px 0 80px;
+        }
+
+        .contenedor-tabla{
+            padding-bottom: 5px;
+        }
+        
+        .tab-frecuencia{
+            height: 35px;
+        }
+
+        .tab-frecuencia div{
+            padding: 10px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+
+
+        /* Animación tabs --------------------------------- */
+
+        .tab-actual{
+            height: 35px;
+        }
+
+        .tab-oculta{
+            height: 30px;
+            margin-bottom: 2px;
+        }
+
+        @keyframes tab-change-up {
+            from{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+            to{
+                margin-bottom: 0;
+                height: 35px;
+            }
+        }
+        
+        @keyframes tab-change-down {
+            from{
+                margin-bottom: 0;
+                height: 35px;
+            }
+            to{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+        }
+    }
+
+
+
+
+/* TABLET ------------------------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+
+        .seccion-productos{
+            margin: 40px 20px 0;
+        }
+
+        .contenedor-tabla{
+            padding-bottom: 5px;
+        }
+        
+        .tab-frecuencia{
+            height: 35px;
+        }
+
+        .tab-frecuencia div{
+            padding: 10px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+
+
+        /* Animación tabs --------------------------------- */
+
+        .tab-actual{
+            height: 35px;
+        }
+
+        .tab-oculta{
+            height: 30px;
+            margin-bottom: 2px;
+        }
+
+        @keyframes tab-change-up {
+            from{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+            to{
+                margin-bottom: 0;
+                height: 35px;
+            }
+        }
+        
+        @keyframes tab-change-down {
+            from{
+                margin-bottom: 0;
+                height: 35px;
+            }
+            to{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+        }
+    }
+
+
+
+
+
+/* MOVIL ----------------------------------------------------------------- */
+
+    @media screen and (max-width:400px){
+
+        .seccion-productos{
+            min-width: 85%;
+            margin: 40px 20px 0;
+            padding-bottom: 40px;
+        }
+
+        .contenedor-tabla{
+            padding-bottom: 5px;
+        }
+        
+        .tab-frecuencia{
+            height: 35px;
+        }
+
+        .tab-frecuencia div{
+            padding: 10px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+
+
+        /* Animación tabs --------------------------------- */
+
+        .tab-actual{
+            height: 35px;
+        }
+
+        .tab-oculta{
+            height: 30px;
+            margin-bottom: 2px;
+        }
+
+        @keyframes tab-change-up {
+            from{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+            to{
+                margin-bottom: 0;
+                height: 35px;
+            }
+        }
+        
+        @keyframes tab-change-down {
+            from{
+                margin-bottom: 0;
+                height: 35px;
+            }
+            to{
+                margin-bottom: 2px;
+                height: 30px;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+
+
+
+
+/* PRODUCTOS ROW ----------------------------------------------------------------------------------------------------------- */
 
 .productos-row{
     border: 1px dashed gray;
-    height: 50px;
-    padding: 15px;
+    background-color: rgb(32, 37, 56);
+    display: flex;
+    align-items: center;
 }
 
 .productos-row.heading{
-    padding: 15px 20px;
+    background-color: rgb(41, 47, 72);
 }
 
 .productos-row h3{
     display: flex;
     align-items: center;
 }
-.productos-row h3 svg{
-    margin-left: 5px;
-}
 
 
 
 
-/* Producto ----------------------------------------- */
+/* Producto ------------------------------------------------------------- */
 
 .productos-row.producto{
     border-color: rgb(105, 168, 105);
-    width: 180px;
-    display: flex;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+    left: 0;
+    /* box-shadow: 5px 0 10px 5px rgba(0, 0, 0, 0.3); */
 }
 
 .productos-cont{
@@ -132,24 +290,19 @@
 
 
 
-/* Estado ---------------------------------------------- */
-
+/* Estado ----------------------------------------------------------------- */
 .productos-row.estado{
-    width: 95px;
-}
-
-.productos-row.heading.estado{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 
 
-/* Precio & Precio Kg ----------------------------------------------- */
+/* Precio & Precio Kg --------------------------------------------------------- */
 
 .productos-row.precio{
     border-color: rgb(195, 164, 108);
-    width: 85px;
 }
 
 .productos-row.heading.precio{
@@ -159,40 +312,34 @@
 
 .productos-row.preciokg{
     border-color: rgb(195, 164, 108);
-    width: 100px;
 }
 
 .productos-row.heading.preciokg{
     display: flex;
     justify-content: center;
-    text-wrap: nowrap;
 }
 
 
 
-/* Cantidad,max,units ------------------------------------------------ */
+/* Cantidad,max,units -------------------------------------------------------- */
 
 .productos-row.cantidad{
     border-color: rgb(152, 186, 132);
-    width: 100px;
 }
 
 .productos-row.single-number{
     border-color: rgb(128, 216, 216);
-    width: 50px;
     display: flex;
     justify-content: center;
 }
+
 .productos-row.heading.single-number{
     padding: 0;
 }
-.productos-row.heading.single-number h3{
-    margin-top: 10px;
-}
 
 
 
-/* Mercado ---------------------------------------------------------- */
+/* Mercado ------------------------------------------------------------------- */
 
 .productos-row.heading.tagging{
     padding-right: 0;
@@ -200,35 +347,231 @@
 
 .productos-row.mercado{ 
     border-color: rgb(170, 73, 73);
-    width: 150px;
 }
 
 .productos-row.prioridad{
     border-color: rgb(186, 128, 186);
-    width: 155px;
 }
 
 .productos-row.tipo{
     border-color: rgb(145, 101, 101);
-    width: 130px;
     overflow: hidden;
 }
 
 
 
 
+/* MEDIA QUERIES -------------------------------------------------------------------------------------- */
+
+/* PANTALLA PEQUEÑA -------------------------------------------------------------- */
+
+    @media screen and (min-width:781px){
+
+        .productos-row.heading.tagging .icono-editar{
+            margin-left: 5px;
+        }
+
+        .productos-row{
+            height: 50px;
+            padding: 15px;
+        }
+
+        .productos-row.heading{
+            padding: 15px 20px;
+            height: 55px;
+        }
+
+
+        /* Producto ---------------------------------- */
+        .productos-row.producto{
+            width: 235px;
+        }
+
+        /* Estado ------------------------------------ */
+        .productos-row.estado{
+            width: 100px;
+        }
+
+        /* Precio ------------------------------------ */
+        .productos-row.precio{
+            width: 100px;
+        }
+        .productos-row.preciokg{
+            width: 130px;
+        }
+
+        /* Cantidad --------------------------------- */
+        .productos-row.cantidad{
+            width: 100px;
+        }
+
+        /* Units & Max ------------------------------ */
+        .productos-row.single-number{
+            width: 65px;
+        }
+        .productos-row.heading.single-number h3{
+            margin-top: 5px;
+        }
+
+        /* Tags ------------------------------------- */
+        .productos-row.mercado{ 
+            width: 155px;
+        }
+        .productos-row.prioridad{
+            width: 160px;
+        }
+        .productos-row.tipo{
+            width: 135px;
+        }
+    }
 
 
 
-/* ------------------------------------------------------------------------------------------------------- */
+
+
+
+/* TABLET ----------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+
+        .productos-row.heading.tagging .icono-editar{
+            margin-left: 5px;
+        }
+
+        .productos-row{
+            height: 50px;
+        }
+
+        .productos-row.heading{
+            height: 55px;
+        }
+
+
+        /* Producto ---------------------------------- */
+        .productos-row.producto{
+            width: 200px;
+        }
+
+        /* Estado ------------------------------------ */
+        .productos-row.estado{
+            width: 95px;
+        }
+
+        /* Precio ------------------------------------ */
+        .productos-row.precio{
+            width: 90px;
+        }
+        .productos-row.preciokg{
+            width: 110px;
+        }
+
+        /* Cantidad --------------------------------- */
+        .productos-row.cantidad{
+            width: 100px;
+        }
+
+        /* Units & Max ------------------------------ */
+        .productos-row.single-number{
+            width: 50px;
+        }
+        .productos-row.heading.single-number h3{
+            margin-top: 3%;
+        }
+
+        /* Tags ------------------------------------- */
+        .productos-row.mercado{ 
+            width: 150px;
+        }
+        .productos-row.prioridad{
+            width: 155px;
+        }
+        .productos-row.tipo{
+            width: 130px;
+        }
+    }
+
+
+
+
+
+/* MÓVIL ------------------------------------------------------------ */
+
+    @media screen and (max-width:400px){
+
+        .productos-row.heading.tagging .icono-editar{
+            margin-left: 5px;
+        }
+
+        .productos-row{
+            height: 50px;
+        }
+
+        .productos-row.heading{
+            height: 55px;
+        }
+
+
+        /* Producto ---------------------------------- */
+        .productos-row.producto{
+            width: 180px;
+        }
+
+        /* Estado ------------------------------------ */
+        .productos-row.estado{
+            width: 95px;
+        }
+
+        /* Precio ------------------------------------ */
+        .productos-row.precio{
+            width: 85px;
+        }
+        .productos-row.preciokg{
+            width: 100px;
+        }
+
+        /* Cantidad --------------------------------- */
+        .productos-row.cantidad{
+            width: 100px;
+        }
+
+        /* Units & Max ------------------------------ */
+        .productos-row.single-number{
+            width: 50px;
+        }
+        .productos-row.heading.single-number h3{
+            margin-top: 10px;
+        }
+
+        /* Tags ------------------------------------- */
+        .productos-row.mercado{ 
+            width: 150px;
+        }
+        .productos-row.prioridad{
+            width: 155px;
+        }
+        .productos-row.tipo{
+            width: 130px;
+        }
+    }
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
 
 /* PRODUCTO NUEVO | EDITAR */
 
 .seccion-producto-form{
-    width: calc(100% - 40px);
     height: fit-content;
     background-color: rgb(32, 37, 56);
-    padding: 40px;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -236,13 +579,8 @@
 .nombre-item{ color: white; }
 
 .producto-form{
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    max-height: 430px;
-}
-.producto-form.producto-nuevo{
-    max-height: 370px;
 }
 
 .producto-form .contenedor-input{
@@ -254,7 +592,6 @@
 }
 
 .producto-form div.input{
-    margin-top: 20px;
     position: relative;
 }
 
@@ -268,15 +605,9 @@ div.multi-input{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 30px;
-}
-
-.seccion-botones.top-botones{
-    margin : 0 0 20px;
 }
 
 .mostrar-mas{
-    padding: 5px;
     display: flex;
     justify-content: center;
 }
@@ -287,15 +618,13 @@ div.multi-input{
 
 
 
-/* INPUTS ---------------------------------------------------------------------------------------- */
+
+
+/* INPUTS -------------------------------------------------------------------------------------------------------------- */
 
 .producto-form input{
     -webkit-appearance: none;
     appearance: none;
-}
-
-.producto-form input:not(input[type="submit"]) ,select{
-    padding: 5px 10px;
 }
 
 .estado-input{
@@ -306,52 +635,45 @@ div.multi-input{
     border: 1px solid red;
 }
 
-
 .producto-form div.input,select{
     width: 100%;
 }
 
-.input-item{
-    width: calc(100% - 15px);
-}
+
+
+/* Precio  ------------------------------------------------- */
 
 .input-precio{
     display: flex;
     align-items: center;
 }
 .input-precio input{
-    width: 80px;
-    margin-right: 2px;
     text-align: right;
 }
 .input-precio input::placeholder{
     text-align: left;
 }
 
-.input-single-cant{
-    width: 40px;
-}
+
+/* Cantidad ---------------------------------------------- */
 
 .input-cantidad div{
     display: flex;
 }
 .input-cantidad input{
-    width: 70px;
-    margin-right: 5px;
     padding-right: 0;
 }
 .input-cantidad datalist{
     appearance: none;
     -webkit-appearance: none;
 }
-
 .input-cantidad input::-webkit-calendar-picker-indicator,datalist::-webkit-calendar-picker-indicator{
     display: none;
 }
 
-.input-cantidad.unidad input{
-    width: 50px;
-}
+
+
+/* Estado ------------------------------------------------ */
 
 .input-estado{
     display: flex;
@@ -375,26 +697,259 @@ div.multi-input{
 
 
 
+/* MEDIA QUERIES --------------------------------------------------------------------------------------------------- */
+
+/* PANTALLA PEQUEÑA ------------------------------------------------------------------------------ */
+
+    @media screen and (min-width:781px){
+
+        /* SECCION FORMULARIO ----------------------------------- */
+
+        .seccion-producto-form{
+            width: 410px;
+            padding: 60px 50px 50px;
+        }
+
+        .producto-form{
+            margin-top: 20px;
+            max-height: 320px;
+        }
+        .producto-form.producto-nuevo{
+            max-height: 370px;
+        }
+
+        .producto-form div.input{
+            margin-top: 20px;
+            padding-right: 8px;
+        }
+
+        .seccion-botones{
+            margin-top: 40px;
+        }
+        
+        .seccion-botones.top-botones{
+            margin: 0 0 30px;
+        }
+        
+        .mostrar-mas{
+            padding: 8px;
+        }
 
 
-/* ______________________________________________________________________ */
+
+
+        /* INPUTS ----------------------------------------------- */
+
+        .producto-form input:not(input[type="submit"]) ,select{
+            padding: 5px 10px;
+        }
+
+        /* Producto ----------------------------- */
+        .input-item{
+            width: calc(100% - 15px);
+        }
+
+        /* Precio ------------------------------- */
+        .input-precio input{
+            width: 110px;
+            margin-right: 5px;
+        }
+
+        /* Cantidad ------------------------------ */
+        .input-cantidad input{
+            width: 90px;
+            margin-right: 5px;
+        }
+        .input-cantidad.unidad input{
+            width: 65px;
+        }
+
+        /* Units & Max ---------------------------- */
+        .input-single-cant{
+            width: 50px;
+        }
+        
+    }
 
 
 
-/* RESUMEN */
+
+
+
+/* TABLET ----------------------------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+
+        /* SECCION FORMULARIO ----------------------------------- */
+
+        .seccion-producto-form{
+            max-width: 380px;
+            min-width: 350px;
+            min-height: 400px;
+            padding: 50px 45px;
+        }
+
+        .producto-form{
+            margin-top: 20px;
+            max-height: 320px;
+        }
+        .producto-form.producto-nuevo{
+            max-height: 370px;
+        }
+
+        .producto-form div.input{
+            margin-top: 20px;
+            padding-right: 5px;
+        }
+
+        .seccion-botones{
+            margin-top: 30px;
+        }
+        
+        .seccion-botones.top-botones{
+            margin: 0 0 30px;
+        }
+        
+        .mostrar-mas{
+            padding: 8px;
+        }
+
+
+
+
+        /* INPUTS ----------------------------------------------- */
+
+        .producto-form input:not(input[type="submit"]) ,select{
+            padding: 5px 10px;
+        }
+
+        /* Producto ----------------------------- */
+        .input-item{
+            width: calc(100% - 15px);
+        }
+
+        /* Precio ------------------------------- */
+        .input-precio input{
+            width: 100px;
+            margin-right: 5px;
+        }
+
+        /* Cantidad ------------------------------ */
+        .input-cantidad input{
+            width: 80px;
+            margin-right: 5px;
+        }
+        .input-cantidad.unidad input{
+            width: 60px;
+        }
+
+        /* Units & Max ---------------------------- */
+        .input-single-cant{
+            width: 45px;
+        }        
+        
+    }
+
+
+
+
+
+/* MÓVIL --------------------------------------------------------------------------------- */
+
+    @media screen and (max-width:400px){
+
+        /* SECCION FORMULARIO ----------------------------------- */
+
+        .seccion-producto-form{
+            width: calc(100% - 40px);
+            padding: 40px;
+        }
+
+        .producto-form{
+            margin-top: 20px;
+            max-height: 430px;
+        }
+        .producto-form.producto-nuevo{
+            max-height: 370px;
+        }
+
+        .producto-form div.input{
+            margin-top: 20px;
+            padding-right: 5px;
+        }
+
+        .seccion-botones{
+            margin-top: 30px;
+        }
+        
+        .seccion-botones.top-botones{
+            margin : 0 0 20px;
+        }
+        
+        .mostrar-mas{
+            padding: 5px;
+        }
+
+
+
+
+        /* INPUTS ----------------------------------------------- */
+
+        .producto-form input:not(input[type="submit"]) ,select{
+            padding: 5px 10px;
+        }
+
+        /* Producto ----------------------------- */
+        .input-item{
+            width: calc(100% - 15px);
+        }
+
+        /* Precio ------------------------------- */
+        .input-precio input{
+            width: 80px;
+            margin-right: 2px;
+        }
+
+        /* Cantidad ------------------------------ */
+        .input-cantidad input{
+            width: 70px;
+            margin-right: 5px;
+        }
+        .input-cantidad.unidad input{
+            width: 50px;
+        }
+
+        /* Units & Max ---------------------------- */
+        .input-single-cant{
+            width: 40px;
+        }        
+        
+    }
+
+
+
+
+
+
+
+
+/* _____________________________________________________________________________________________________________________________________________________________________________________________________________________ */
+
+
+
+
+
+
+/* RESUMEN ------------------------------------------------------------------------------------------------------------ */
 
 .resumen{
     /* border: 3px solid rgb(77, 87, 128); */
     background-color: rgb(32, 37, 56);
-    width: calc(100% - 40px);
     height: fit-content;
-    border-radius: 10px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.50);
-    padding: 20px 30px;
 }
 
 .resumen div.info-producto{
-    margin-top: 20px;
     justify-content: space-between;
 }
 
@@ -404,11 +959,6 @@ div.multi-input{
     flex-wrap: wrap;
 }
 
-.resumen .info-producto .tag{
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
 .resumen-grid{
     display: grid;
 }
@@ -416,30 +966,99 @@ div.multi-input{
     grid-template-columns: repeat(3,auto);
 }
 
-.resumen .precio h5{
-    font-size: 16px;
-}
-
-.resumen .precio{
-    font-size: 22px;
-}
 
 
 
+/* MEDIA QUERIES -------------------------------------------------------------------------------- */
+
+/* PANTALLA PEQUEÑA --------------------------------------------------------------- */
+
+    @media screen and (min-width:781px){
+        .resumen{
+            width: 400px;
+            border-radius: 25px;
+            padding: 40px 40px 30px;
+        }
+
+        .resumen div.info-producto{
+            margin-top: 25px;
+        }
+
+        .resumen .info-producto .tag{
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    }
 
 
-/* --------------------------------------------------------------------------------------------- */
 
-/* EDITAR PROPIEDAD */
+
+
+/* TABLET --------------------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+        .resumen{
+            max-width: 370px;
+            min-width: 350px;
+            border-radius: 25px;
+            padding: 30px 35px;
+        }
+
+        .resumen div.info-producto{
+            margin-top: 20px;
+        }
+
+        .resumen .info-producto .tag{
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    }
+
+
+
+
+
+/* MÓVIL --------------------------------------------------------------- */
+
+    @media screen and (max-width:400px){
+        .resumen{
+            width: calc(100% - 40px);
+            border-radius: 10px;
+            padding: 20px 30px;
+        }
+
+        .resumen div.info-producto{
+            margin-top: 20px;
+        }
+
+        .resumen .info-producto .tag{
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    }
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+/* EDITAR PROPIEDAD ------------------------------------------------------------------------------------------ */
 
 .info-propiedad{
     width: 100%;
-    margin-top: 20px;
 }
 
 .opcion-propiedad{
     border: 1px solid grey;
-    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -447,13 +1066,11 @@ div.multi-input{
 }
 
 .info-propiedad.opciones{
-    height: 250px;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .lista-propiedades{
-    border: 1px dashed red;
     height: fit-content;
     overflow: scroll;
 }
@@ -466,24 +1083,130 @@ div.multi-input{
     margin-top: auto;
 }
 
-.no-padding.add{
-    padding: 5px;
-}
-.no-padding.editar{
-    padding: 9px;
-}
-
 .input-propiedad{
     appearance: none;
     -webkit-appearance: none;
     border: 0;
     background-color: rgb(58, 66, 97);
-    border-radius: 25px;
-    padding: 10px 15px;
-    width: 160px; 
-    margin-right: 15px;
 }
 
-.input-propiedad.editar{
-    padding: 8px 15px;
-}
+
+
+
+
+/* MEDIA QUERIES ----------------------------------------------------------------------------------- */
+
+/* PANTALLA PEQUEÑA ------------------------------------------------------------------ */
+
+    @media screen and (min-width:781px){
+
+        .info-propiedad{
+            margin-top: 25px;
+        }
+
+        .opcion-propiedad{
+            padding: 15px;
+        }
+
+        .info-propiedad.opciones{
+            height: 250px;
+        }
+        
+        .no-padding.add{
+            padding: 6px 5px 5px;
+        }
+        .no-padding.editar{
+            padding: 9px;
+        }
+
+        .input-propiedad{
+            border-radius: 25px;
+            padding: 10px 15px;
+            width: 200px; 
+            margin-right: 15px;
+        }
+        
+        .input-propiedad.editar{
+            padding: 8px 15px;
+        }
+        
+    }
+
+
+    
+
+
+/* TABLET ----------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+
+        .info-propiedad{
+            margin-top: 25px;
+        }
+
+        .opcion-propiedad{
+            padding: 15px;
+        }
+
+        .info-propiedad.opciones{
+            height: 250px;
+        }
+        
+        .no-padding.add{
+            padding: 5px;
+        }
+        .no-padding.editar{
+            padding: 9px;
+        }
+
+        .input-propiedad{
+            border-radius: 25px;
+            padding: 10px 15px;
+            width: 200px; 
+            margin-right: 15px;
+        }
+        
+        .input-propiedad.editar{
+            padding: 8px 15px;
+        }
+        
+    }
+
+
+
+
+    
+/* MÓVIL ------------------------------------------------ */
+
+    @media screen and (max-width:400px){
+        .info-propiedad{
+            margin-top: 20px;
+        }
+
+        .opcion-propiedad{
+            padding: 15px;
+        }
+
+        .info-propiedad.opciones{
+            height: 250px;
+        }
+        
+        .no-padding.add{
+            padding: 5px;
+        }
+        .no-padding.editar{
+            padding: 9px;
+        }
+
+        .input-propiedad{
+            border-radius: 25px;
+            padding: 10px 15px;
+            width: 160px; 
+            margin-right: 15px;
+        }
+        
+        .input-propiedad.editar{
+            padding: 8px 15px;
+        }
+        
+    }

@@ -1,72 +1,209 @@
-/* PROCUCTOS LISTA DE LA COMPRA */
+.lista-productos{
+    overflow: scroll;
+}
 
-.lista-compra{
-    padding: 20px 20px 100px;
+.contenedor-filtros{
+    width: 100%;
+}
+
+.contenedor-productos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
 
-/* PRODUCTO INFO */
-
 .producto-lista{
     background-color: rgb(41, 47, 72);
-    border-radius: 10px;
-    box-shadow: 5px 0 10px 2px rgba(0, 0, 0, 0.25);
-    margin-top: 10px;
-    padding: 15px 15px 10px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
 }
 
 .info-producto{
     display: flex;
     width: 100%;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .info-producto .producto-nombre{
-    width: 150px;
     text-wrap: nowrap;
     overflow: hidden;
 }
 
-.lista-compra .info-producto.producto .input-estado{
-    margin-right: 5px;
-}
+
 .lista-compra .info-producto.producto .compras{
     margin-left: auto;
     display: flex;
 }
 
-.lista-compra .info-producto.tags .precio{
-    width: 50px;
-    margin-right: 10px;
-}
-.lista-compra .info-producto.tags .tag{
-    margin: 0 5px;
-}
-
-.input-checkbox{
-    width: 15px;
-    height: 15px;
-    margin-left: 5px;
-}
 
 
 
 
+/* MEDIA QUERIES ------------------------------------------------------------------------------ */
+
+/* PANTALLA PEQUEÑA --------------------------------------------------------------- */
+
+    @media screen and (min-width:973px){
+
+        .lista-compra{
+            margin: 0 auto;
+            padding: 0 60px 100px;
+        }
+
+
+        .contenedor-productos{
+            flex-direction: row;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+        
+
+        /* Alinear la última fila en flex-start, en vez de que justify-content: space-between actúe. No entiendo bien porqué funciona, esta solución es de otra persona */
+        
+
+        .producto-lista{
+            margin-right: 15px;
+        }
+    }
+
+
+    @media screen and (min-width:781px){
+
+        .lista-compra{
+            min-width: 80vw;
+            max-width: 1000px;
+            padding: 0 60px 100px;
+        }
+
+        .producto-lista{
+            width: 410px;
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 22px 25px 15px;
+        }
+
+        .info-producto{
+            margin-bottom: 12px;
+        }
+
+        .info-producto .producto-nombre{
+            max-width: 200px;
+        }
+
+        .lista-compra .info-producto.producto .input-estado{
+            margin-right: 10px;
+        }
+
+        .lista-compra .info-producto.tags .precio{
+            max-width: 75px;
+            margin-right: 15px;
+        }
+
+        .lista-compra .info-producto.tags .tag{
+            margin: 0 5px;
+        }
+
+        .input-checkbox{
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+        }
+
+    }
 
 
 
-/* ------------------------------------------------------- */
+/* TABLET ------------------------------------------------------- */
+
+    @media screen and (max-width:781px){
+
+        .lista-compra{
+            min-width: 80vw;
+            padding: 0 40px 100px;
+        }
 
 
-/* LISTA PRODUCTOS */
+        .producto-lista{
+            min-width: 340px;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 15px;
+            padding: 18px 20px 12px;
+        }
+
+        .info-producto{
+            margin-bottom: 10px;
+        }
+
+        .info-producto .producto-nombre{
+            width: 150px;
+        }
+
+        .lista-compra .info-producto.producto .input-estado{
+            margin-right: 8px;
+        }
+
+        .lista-compra .info-producto.tags .precio{
+            max-width: 75px;
+            margin-right: 15px;
+        }
+
+        .lista-compra .info-producto.tags .tag{
+            margin: 0 5px;
+        }
+
+        .input-checkbox{
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+        }
+
+    }
 
 
 
-.lista-productos{
-    overflow-x: scroll;
-}
 
 
-/* ----------------------------------------------- */
+/* MÓVIL ------------------------------------------------------------------ */
+
+    @media screen and (max-width:400px){
+
+        .lista-compra{
+            padding: 0 20px 100px;
+        }
+
+        .producto-lista{
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 15px 15px 10px;
+        }
+
+        .info-producto{
+            margin-bottom: 10px;
+        }
+
+        .info-producto .producto-nombre{
+            width: 150px;
+        }
+
+        .lista-compra .info-producto.producto .input-estado{
+            margin-right: 5px;
+        }
+
+        .lista-compra .info-producto.tags .precio{
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .lista-compra .info-producto.tags .tag{
+            margin: 0 5px;
+        }
+
+        .input-checkbox{
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+        }
+
+    }

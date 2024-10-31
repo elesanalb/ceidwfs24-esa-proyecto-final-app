@@ -23,6 +23,12 @@ function Filtros(
 
 
 
+/* Animación */
+
+    let [statusAnimacionTexto,setStatusAnimacionTexto] = useState(false)
+
+
+
 
 
 /* Funciones */
@@ -52,11 +58,19 @@ function Filtros(
 
                     <div className='filtros'>
 
-                        <div className={ `filtro-texto ${ textSearchStatus ? "animacion-busqueda-in" : "animacion-busqueda-out"}`}>
+                        <div className={ `filtro-texto `}>
                             
                             <FaSearch
                                 onClick={ (event) => {
-                                    setTextSearchStatus(!textSearchStatus);
+                                    setStatusAnimacionTexto(!statusAnimacionTexto)
+                                    if( !statusAnimacionTexto ){
+                                        setTextSearchStatus(!textSearchStatus)
+                                    }else{
+                                        setTimeout( () => { setTextSearchStatus(!textSearchStatus) },550)
+                                    }
+                                    
+                                    
+                                    
                                 }}
                             />
 
@@ -64,7 +78,8 @@ function Filtros(
                             {
                                 textSearchStatus ? 
                                 
-                                <input type="text" placeholder="Buscar..."
+                                <input type="text" className={ statusAnimacionTexto ? "animacion-busqueda-in" : "animacion-busqueda-out" }
+                                placeholder="Buscar..."
                                     onChange={ event => {
                                         buscarItem(event.target.value)
                                         console.log(event.target.value)

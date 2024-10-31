@@ -1,27 +1,15 @@
 .barra-busqueda{
   width: 100%;
   overflow-x: scroll;
-  margin-bottom: 20px;
 }
 
 .contenedor-filtros{
   width: fit-content;
 }
 
-
 .filtros{
   display: flex;
-  padding-bottom: 5px;
-}
-
-
-/* --------------------------------------------------------------------------------------------------------------------------------- */
-
-/* BUSQUEDA  */
-
-.filtros{
-  display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   max-width: 100%;
 }
@@ -29,9 +17,12 @@
 .filtro-texto{
   display: flex;
   align-items: center;
-  margin-right: 15px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 25px;
+}
+
+.filtro-texto svg{
+  cursor: pointer;
 }
 
 .filtro-texto input[type="text"]{
@@ -39,59 +30,227 @@
   appearance: none;
   border: none;
   opacity: 100%;
-  padding: 4px;
   background:none;
   transition: 1s;
-  width: 150px;
 }
 
 .animacion-busqueda-in{
-  width: fit-content;
-  animation-name: busqueda-texto;
-  animation-duration: 1s;
+  animation-name: busqueda-texto-in;
+  animation-duration: 0.6s;
   animation-iteration-count: 1;
   animation-direction: normal;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
 
 .animacion-busqueda-out{
-  animation-name: busqueda-texto;
-  animation-duration: 1s;
+  animation-name: busqueda-texto-out;
+  animation-duration: 0.6s;
   animation-iteration-count: 1;
-  animation-direction: reverse;
-}
-
-@keyframes busqueda-texto{
-  to{
-      width: fit-content;
-  }
-}
-
-.filtro-texto svg{
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  cursor: pointer;
+  animation-direction: normal;
+  animation-timing-function: ease-out;
 }
 
 
 
 
 
-/* ------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* BUSQUEDA MERCADO */
+/* BUSQUEDA MERCADO ------------------------------------------------------------------------------------- */
 
 .filtro-seleccion{
   background-color: rgba(255, 255, 255, 0.25);
   text-align: left;
   align-items: center;
-  max-width: 200px;
-  padding: 4px;
-  padding-left: 10px;
-  margin-right: 20px;
   border-radius: 25px;
 }
+
+
+
+
+
+/* MEDIA QUERIES -----------------------------------------------------------------------------------*/
+
+/* PANTALLA PEQUEÑA -------------------------------------------------------------*/
+
+  @media screen and (min-width:781px){
+
+    .barra-busqueda{
+      margin-bottom: 30px;
+    }
+
+    .filtros{
+      padding-bottom: 5px;
+    }
+
+    .filtro-texto{
+      margin-right: 30px;
+    }
+
+    .filtro-texto input[type="text"]{
+      padding: 4px;
+      width: 300px;
+    }
+
+    .filtro-texto svg{
+      width: 27px;
+      height: 27px;
+      padding: 5px;
+    }
+
+    .filtro-seleccion{
+      max-width: 300px;
+      padding: 6px;
+      padding-left: 10px;
+      margin-right: 20px;
+    }
+
+    @keyframes busqueda-texto-in{
+      from{
+        width: 0;
+      }
+      to{
+          width: 300px;
+      }
+    }
+    
+    @keyframes busqueda-texto-out{
+      from{
+        width: 300px;
+      }
+      to{
+          width: 0px;
+      }
+    }
+
+  }
+
+
+
+
+
+/* TABLET -------------------------------------------------- */
+
+  @media screen and (max-width:781px){
+
+    .barra-busqueda{
+      margin-bottom: 20px;
+    }
+
+    .filtros{
+      padding-bottom: 5px;
+    }
+
+    .filtro-texto{
+      margin-right: 15px;
+    }
+
+    .filtro-texto input[type="text"]{
+      padding: 4px;
+      width: 220px;
+    }
+
+    .filtro-texto svg{
+      width: 27px;
+      height: 27px;
+      padding: 5px;
+    }
+
+    .filtro-seleccion{
+      max-width: 250px;
+      padding: 4px;
+      padding-left: 10px;
+      margin-right: 20px;
+    }
+
+    @keyframes busqueda-texto-in{
+      from{
+        width: 0;
+      }
+      to{
+          width: 220px;
+      }
+    }
+    
+    @keyframes busqueda-texto-out{
+      from{
+        width: 220px;
+      }
+      to{
+          width: 0px;
+      }
+    }
+
+  }
+
+
+
+
+
+
+/* MÓVIL ------------------------------------------------------------- */
+
+  @media screen and (max-width:400px){
+
+    .barra-busqueda{
+      margin-bottom: 20px;
+    }
+
+    .filtros{
+      padding-bottom: 5px;
+    }
+
+    .filtro-texto{
+      margin-right: 15px;
+    }
+
+    .filtro-texto input[type="text"]{
+      padding: 4px;
+      width: 150px;
+    }
+
+    .filtro-texto svg{
+      width: 27px;
+      height: 27px;
+      padding: 5px;
+    }
+
+    .filtro-seleccion{
+      max-width: 200px;
+      padding: 4px;
+      padding-left: 10px;
+      margin-right: 20px;
+    }
+
+    @keyframes busqueda-texto-in{
+      from{
+        width: 0;
+      }
+      to{
+          width: 150px;
+      }
+    }
+    
+    @keyframes busqueda-texto-out{
+      from{
+        width: 150px;
+      }
+      to{
+          width: 0px;
+      }
+    }
+
+  }
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
 
 
 /* Componente ----------------------------------------------------------------------*/

@@ -39,7 +39,7 @@ let [statusPopup,setStatusPopup] = useState(true)
 
 
 
-/* _______________________________________________________________________________________________________*/
+/* ___________________________________________________________________________________________________________________________________________________________________________*/
 
 
 
@@ -50,6 +50,71 @@ let [statusPopup,setStatusPopup] = useState(true)
             <nav className="nav-blur segundo-popup">
 
                 <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" }`}>
+
+
+
+                    <form
+                        onSubmit={ event => {
+
+                            /* event.preventDefault() */
+
+/* --------------------- PETICION A LA API ----------------------------------------------------------------------------------------------------------------- */
+                            
+                            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/nuevo",
+                                {
+                                    method : "POST",
+                                    body : JSON.stringify(
+                                        {
+                                            producto : producto,
+                                            estado : estado,
+                                            precio : precio,
+                                            preciokg : preciokg,
+                                            mercado : seleccionMercado,
+                                            cantidad : cantidad,
+                                            cantidadud : cantidadud,
+                                            max : max,
+                                            units : units,
+                                            prioridad : seleccionPrioridad,
+                                            tipo : seleccionTipo,
+                                            frecuencia : frecuencia
+                                        }
+                                    ),
+                                    headers : (
+                                        {
+                                            "Content-type" : "application/json"
+                                        }
+                                    )
+                                }
+                            )
+                            .then( res => res.json() )
+                            .then( ([{id}]) => {
+                                addProducto(
+                                    {
+                                        producto : producto,
+                                        estado : estado,
+                                        precio : precio,
+                                        preciokg : preciokg,
+                                        mercado : seleccionMercado,
+                                        cantidad : cantidad,
+                                        cantidadud : cantidadud,
+                                        max : max,
+                                        units : units,
+                                        prioridad : seleccionPrioridad,
+                                        tipo : seleccionTipo,
+                                        frecuencia : frecuencia
+                                    }
+                                )
+                            })
+
+                            setStatusPopup(false)
+                            setTimeout( () => { 
+                                crearProducto(false)
+                                verResumen(false)
+                            },250)
+                        } }
+                    >
+
+                    
 
 
                 {/* Cerrar ventana ------------------------------------------------------ */}
@@ -126,14 +191,11 @@ let [statusPopup,setStatusPopup] = useState(true)
 
                         {/* filas */}
                         <p>{precio}€</p>
-                        <p>{cantidad+cantidadud}</p>
                         <p>
-                            {preciokg}
-                            {
-                                preciokg ? "€/kg" : ""
-                            }
-                            
+                            { cantidad ? cantidad : "-" }
+                            { cantidadud ? cantidadud : "-" }
                         </p>
+                        <p>{ preciokg ? `${preciokg}€/kg` : "--" }</p>
 
                     </div>
 
@@ -143,7 +205,7 @@ let [statusPopup,setStatusPopup] = useState(true)
 
 {/* --------------- INFO --------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
-                    <div className="info-producto">
+                    <div className="info-producto single-number">
 
                         <div>
                             <h5>Units</h5>
@@ -220,78 +282,11 @@ let [statusPopup,setStatusPopup] = useState(true)
 
                     {/* SUBMIT --------------------------------------------------------------------- */}
 
+                        <input className="boton submit" type="submit" value="Añadir"/>
 
-
-                        <input className="boton submit" type="submit" value="Añadir"
-
-                            onClick={ event => {
-
-/* -------------------------------- PETICION A LA API ----------------------------------------------- */
-
-                                fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos/nuevo",
-                                    {
-                                        method : "POST",
-                                        body : JSON.stringify(
-                                            {
-                                                producto : producto,
-                                                estado : estado,
-                                                precio : precio,
-                                                preciokg : preciokg,
-                                                mercado : seleccionMercado,
-                                                cantidad : cantidad,
-                                                cantidadud : cantidadud,
-                                                max : max,
-                                                units : units,
-                                                prioridad : seleccionPrioridad,
-                                                tipo : seleccionTipo,
-                                                frecuencia : frecuencia
-                                            }
-                                        ),
-                                        headers : (
-                                            {
-                                                "Content-type" : "application/json"
-                                            }
-                                        )
-                                    }
-                                )
-                                .then( res => res.json() )
-                                .then( ([{id}]) => {
-
-                                    /* Filtrar la listas de mercados/prioridad según el input (id) que llega para que devuelva el nombre correspondiente *\
-                                        *      filter --> devuelve lista de un solo elemento
-                                        *      pop() --> devuelve el elemento
-                                        *      .mercado | .prioridad --> devuelve el valor correspondiente */
-                                    addProducto(
-                                        {
-                                            id : id,
-                                            /*
-                                            producto : producto,
-                                            precio : precio,
-                                            preciokg : preciokg,
-                                            mercado : mercados.filter( (mercados) => mercados.id == seleccionMercado ).pop().mercado,
-                                            cantidad : cantidad + cantidadud,
-                                            max : max,
-                                            units : units,
-                                            prioridad : prioridadLista.filter( (prioridad) => prioridad.id == seleccionPrioridad ).pop().prioridad,
-                                            tipo : tipos.filter( (tipos) => tipos.id == seleccionTipo ).pop().tipo,
-                                            frecuencia : frecuencia == 1 ? "Mensual" : "Ocasional"
-                                            */
-                                        }
-                                    )
-
-                                })
-
-                                setStatusPopup(false)
-                                setTimeout( () => { 
-                                    crearProducto(false)
-                                    verResumen(false)
-                                },250)
-                            } }
-                        />
-
-
+                        
                     </div>
-
+                    </form>
                 </div>
             </nav>
         </>

@@ -873,7 +873,9 @@ function ProductoEditar(
                                                     setInputPrecio(Number(event.target.value))
                                                 }}
                                                 
-                                            />€
+                                            />
+                                            
+                                            <p className="campo-nombre">€</p>
 
                                         </label>
                                     </div>
@@ -897,7 +899,9 @@ function ProductoEditar(
                                                     setInputPrecioKg(Number(event.target.value))
                                                 }}
                                             
-                                            />€/kg
+                                            />
+                                            
+                                            <p className="campo-nombre">€/kg</p>
 
                                         </label>
                                     </div>

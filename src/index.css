@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -37,75 +39,507 @@ a{
 
 /* FONT SIZE */
 
-h2{
-  font-size: 30px;
-}
-
-h3{
-  font-size: 20px;
-}
-
 h4{
   font-weight: 400;
-  font-size: 18px;
-}
-.productos-row.heading.single-number h3{
-  font-size: 14px;
-}
-
-input,select{
-  font-size: 16px;
 }
 
 .precio{
   font-weight: 500px;
-  font-size: 16px;
 }
 
 .mensaje-error{
-  font-size: 12px;
-  bottom: -15px;
   position: absolute;
   color: red;
 }
 
-
-.mensaje-aviso{
-  font-size: 9px;
-  margin-bottom: 5px;
+.tag{
+  font-weight: 500;
 }
 
 
 
 
+/* MEDIA QUERIES -------------------------------------------------------------------------------------------- */
 
-/* ---------------------------------------------------------------------------------------------------- */
+/* PANTALLA PEQUEÑA ------------------------------------------------------------- */
 
-/* HEADER */
+  @media screen and (min-width:781px){
+
+    /* Títulos ---------------------------------------- */
+
+    header .title{
+      font-size: 45px;
+    }
+
+    .menu-link{
+      font-size: 18px;
+    }
+
+    h2{
+      font-size: 34px;
+    }
+    
+    h3{
+      font-size: 22px;
+    }
+
+    .productos-row.heading.single-number h3{
+      font-size: 16px;
+    }
+
+    h4{
+      font-size: 20px;
+    }
+
+    .resumen .precio h5{
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .resumen .single-number h5{
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .tab-frecuencia h5{
+      font-size: 15px;
+    }
+
+
+
+    /* Input ---------------------------------------- */
+
+    input,select{
+      font-size: 16px;
+    }
+    option{
+      font-size: 14px;
+    }
+
+    .filtro-texto input{
+      font-size: 16px;
+    }
+
+
+
+    /* Texto --------------------------------------- */
+    
+    .productos-cont{
+      font-size: 17px;
+    }
+    
+    .campo-nombre{
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .resumen .precio{
+      font-size: 22px;
+    }
+
+    .resumen .single-number p{
+      font-size: 20px;
+    }
+
+    .producto-lista .precio{
+      font-size: 22px;
+    }
+
+    .mensaje-error{
+      font-size: 12px;
+      bottom: -15px;
+    }
+
+    .mensaje-aviso{
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+
+
+
+    /* Tags y botones ------------------------------- */
+
+    .tag{
+      font-size: 15px;
+    }
+
+    .boton.cancelar{
+      font-size: 15px;
+    }
+
+    .boton.editar{
+      font-size: 16px;
+    }
+
+    .boton.submit{
+      font-size: 16px;
+    }
+
+    .boton-icono.mostrar{
+      font-size: 14px;
+    }
+
+    .boton-icono.add{
+      font-size: 16px;
+    }
+  }
+
+
+
+
+
+/* TABLET ----------------------------------------------------- */
+  @media screen and (max-width:781px){
+
+    /* Títulos ---------------------------------------- */
+
+    header .title{
+      font-size: 40px;
+    }
+
+    .menu-link{
+      font-size: 18px;
+    }
+
+    h2{
+      font-size: 34px;
+    }
+    
+    h3{
+      font-size: 20px;
+    }
+
+    .productos-row.heading.single-number h3{
+      font-size: 14px;
+    }
+
+    h4{
+      font-size: 18px;
+    }
+
+    .resumen .precio h5{
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+
+    .resumen .single-number h5{
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .tab-frecuencia h5{
+      font-size: 13px;
+    }
+
+
+
+    /* Input ---------------------------------------- */
+
+    input,select{
+      font-size: 16px;
+    }
+    option{
+      font-size: 14px;
+    }
+
+    .filtro-texto input{
+      font-size: 16px;
+    }
+
+
+
+    /* Texto --------------------------------------- */
+    
+    .productos-cont{
+      font-size: 16px;
+    }
+    
+    .campo-nombre{
+      margin-bottom: 2px;
+      font-size: 16px;
+    }
+
+    .resumen .precio{
+      font-size: 22px;
+    }
+
+    .resumen .single-number p{
+      font-size: 20px;
+    }
+
+    .producto-lista .precio{
+      font-size: 20px;
+    }
+
+    .mensaje-error{
+      font-size: 12px;
+      bottom: -15px;
+    }
+
+    .mensaje-aviso{
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+
+
+    /* Tags y botones ------------------------------- */
+
+    .tag{
+      font-size: 15px;
+    }
+
+    .boton.cancelar{
+      font-size: 14px;
+    }
+
+    .boton.editar{
+      font-size: 16px;
+    }
+
+    .boton.submit{
+      font-size: 16px;
+    }
+
+    .boton-icono.mostrar{
+      font-size: 14px;
+    }
+
+    .boton-icono.add{
+      font-size: 14px;
+    }
+  }
+
+
+
+
+/* MÓVIL ----------------------------------------------------------- */
+
+  @media screen and (max-width:400px){
+
+    /* Títulos ---------------------------------------- */
+
+    header .title{
+      font-size: 40px;
+    }
+
+    .menu-link{
+      font-size: 16px;
+    }
+
+    h2{
+      font-size: 30px;
+    }
+    
+    h3{
+      font-size: 20px;
+    }
+
+    .productos-row.heading.single-number h3{
+      font-size: 14px;
+    }
+
+    h4{
+      font-size: 18px;
+    }
+
+    .resumen .precio h5{
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+
+    .resumen .single-number h5{
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .tab-frecuencia h5{
+      font-size: 13px;
+    }
+
+
+
+    /* Input ---------------------------------------- */
+
+    input,select{
+      font-size: 16px;
+    }
+    option{
+      font-size: 14px;
+    }
+
+    .filtro-texto input{
+      font-size: 16px;
+    }
+
+
+
+    /* Texto --------------------------------------- */
+    
+    .productos-cont{
+      font-size: 16px;
+    }
+    
+    .campo-nombre{
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+
+    .resumen .precio{
+      font-size: 22px;
+    }
+
+    .resumen .single-number p{
+      font-size: 16px;
+    }
+
+    .producto-lista .precio{
+      font-size: 20px;
+    }
+
+    .mensaje-error{
+      font-size: 12px;
+      bottom: -15px;
+    }
+
+    .mensaje-aviso{
+      font-size: 9px;
+      margin-bottom: 5px;
+    }
+
+
+
+    /* Tags y botones ------------------------------- */
+
+    .tag{
+      font-size: 15px;
+    }
+
+    .boton.cancelar{
+      font-size: 14px;
+    }
+
+    .boton.editar{
+      font-size: 15px;
+    }
+
+    .boton.submit{
+      font-size: 16px;
+    }
+
+    .boton-icono.mostrar{
+      font-size: 14px;
+    }
+
+    .boton-icono.add{
+      font-size: 14px;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+/* HEADER ----------------------------------------------------------------------- */
 
 header{
   width: 100vw;
-  padding: 40px 40px 20px;
-}
-
-header .title{
-  font-size: 40px;
 }
 
 
 
+/* MEDIA QUERIES ------------------------------------------ */
 
-/* MENU ---------------------------------------------------------------------------------- */
+/* MONITOR ---------------------------------- */
+
+@media screen and (min-width:1629px){
+  header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin: 80px 0 50px;
+  }
+}
+
+
+
+
+/* PANTALLA GRANDE ---------------------------------- */
+
+  @media screen and (max-width:1629px){
+    header{
+      padding: 80px 100px 40px;
+    }
+  }
+
+
+
+
+
+/* PANTALLA PEQUEÑA ---------------------------------- */
+
+  @media screen and (max-width:1275px){
+    header{
+      padding: 60px 60px 30px;
+    }
+  }
+
+
+
+
+/* TABLET ----------------------------- */
+
+  @media screen and (max-width:781px){
+    header{
+      padding: 50px 45px 35px;
+    }
+  }
+
+
+
+
+
+/* MOVIL --------------------------------------- */
+
+  @media screen and (max-width:400px){
+    header{
+      padding: 40px 35px 20px;
+    }
+  }
+  
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+/* MENU -------------------------------------------------------------------------- */
 
 .menu{
-  margin: 10px 25px;
   height: max-content;
 }
 
 .menu ul{
   display: flex;
   align-items: center;
-  height: 50px;
+  height: fit-content;
 }
 
 .menu ul li{
@@ -113,6 +547,7 @@ header .title{
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .menu ul li.gasto{
@@ -125,7 +560,7 @@ header .title{
 }
 
 .menu-link{
-  padding: 10px 25px;
+  text-align: center;
   text-decoration: none;
   color: white;
   display: block;
@@ -143,23 +578,128 @@ header .title{
 
 
 
+/* MEDIA QUERIES ----------------------------------------------------- */
 
-/* ----------------------------------------------------------------------------------------------- */
+/* MONITOR GRANDE --------------------------------------------- */
+
+@media screen and (min-width:1629px){
+
+  .menu{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+}
+
+
+
+
+/* PANTALLA GRANDE --------------------------------------------- */
+
+  @media screen and (max-width:1629px){
+
+    .menu{
+      margin: 0 110px 50px;
+    }
+
+  }
+
+
+
+
+/* PANTALLA PEQUEÑA --------------------------------------------- */
+
+  @media screen and (max-width:1275px){
+
+    .menu{
+      margin: 0 70px 50px;
+    }
+ 
+  }
+
+
+
+
+  @media screen and (min-width:781px){
+        
+    .menu ul li{
+      height: 50px;
+    }
+
+    .menu-link{
+      padding: 10px 40px;
+    } 
+  }
+
+
+
+
+/* TABLET ------------------------------------ */
+
+  @media screen and (max-width:781px){
+
+    .menu{
+      margin: 0 50px 50px;
+    }
+    
+    .menu ul li{
+      height: 50px;
+    }
+
+    .menu-link{
+      padding: 10px 30px;
+    }  
+
+  }
+
+
+
+
+/* MÓVIL -------------------------------------------- */
+
+  @media screen and (max-width:400px){
+
+    .menu{
+      margin: 0 20px 30px;
+    }
+    
+    .menu ul li{
+      height: 60px;
+    }
+
+    .menu-link{
+      padding: 10px 30px;
+    }  
+
+  }
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
 
 /* SECCIONES GENERALES */
 
 .nav-blur{
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.344);
   backdrop-filter: blur(3px);
-  z-index: 1;
+  z-index: 2;
   position: fixed;
 }
 
@@ -208,20 +748,24 @@ header .title{
 
 
 
-/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* TAGS */
+
+
+
+
+
+/* TAGS --------------------------------------------------------------------- */
 
 .tag{
   color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
   border-radius: 25px;
-  padding: 2px 10px 3px;
   width: fit-content;
   height: min-content;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
-  font-weight: 500;
 }
+
+
 
 /* MERCADOS */
 .tag.Mercadona{
@@ -316,25 +860,23 @@ header .title{
 }
 
 
-/* PRECIO */
-.tag-precio{
-  margin: 0 5px;
-  width: 50px;
-}
 
 
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* BOTONES */
+
+
+
+
+/* BOTONES ---------------------------------------------------------------------------- */
 
 .boton{
   -webkit-appearance: none;
   appearance: none;
   border: none;
-  margin: 0 10px;
   font-weight: 500;
 }
 
@@ -345,122 +887,393 @@ header .title{
   background: none;
 }
 
-/* SUBMIT */
+
+/* SUBMIT --------------------------------------------- */
 .boton.submit{
   background-color: rgb(115, 212, 115);
-  padding: 5px 10px;
   border-radius: 25px;
 }
 
-/* CANCELAR */
+
+/* CANCELAR ------------------------------------------- */
 .boton.cancelar{
   background:none;
   color:red;
   text-decoration: underline;
 }
 
-/* EDITAR */
+
+/* EDITAR --------------------------------------------- */
 .boton.editar{
   background: none;
-  padding: 5px 10px;
   display: flex;
   align-items: center;
-  font-size: 15px;
   text-decoration: underline;
   font-weight: 400;
 }
 
-.boton.editar svg{
-  margin-right: 2px;
-  width: 18px;
-  height: 18px;
-}
 
-/* BORRAR */
+/* BORRAR -------------------------------------------- */
 .boton-icono.borrar{
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* CERRAR */
+
+/* CERRAR -------------------------------------------- */
 .boton-icono.cerrar{
   margin-right: auto;
-  width: 25px;
-  height: 25px;
 }
 
-/* AÑADIR */
+
+/* AÑADIR --------------------------------------------- */
 .boton-icono.add{
   display: flex;
   align-items: center;
-  font-size: 16px;
-}
-.boton-icono.add svg{
-  width: 18px;
-  height: 18px;
-  margin-right: 5px;
-  margin-bottom: 2px;
 }
 
-/* SUBIR */
+
+/* SUBIR ---------------------------------------------- */
 .boton-icono.subir{
   color: white;
-  width: 20px;
-  height: 20px;
-  margin: 0 10px;
 }
 
-/* ACEPTAR */
+
+/* ACEPTAR -------------------------------------------- */
 .boton-icono.aceptar{
   color: white;
-  width: 25px;
-  height: 25px;
-  margin: 0 10px;
 }
 
-/* MOSTRAR */
+
+/* MOSTRAR -------------------------------------------- */
 .boton-icono.mostrar{
   display: flex;
   align-items: center;
 }
 
-.boton-icono.flecha{
-  width: 25px;
-  height: 25px;
-  margin: 5px;
-}
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
 
-/* ICONOS */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+/* ICONOS ------------------------------------------------------------------------------------------ */
 
 .icono-add{
-  padding: 5px;
+  z-index: 1;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.50);
+  background: radial-gradient(circle, rgba(20,32,77,0.7) 20%, rgba(255,255,255,0.25) 100%);
+  /* background-color: rgba(255, 255, 255, 0.50); */
   backdrop-filter: blur(3px);
-  box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
   cursor: pointer;
   position: fixed;
-  right: 30px;
-  bottom: 70px;
-  width: 35px;
-  height: 35px;
 }
 
 .icono-add svg{
   color: white;
 }
 
-
-.icono-estado{
-  width: 24px;
-  height: 24px;   
-}
-
 .icono-editar{
-  width: 18px;
-  height: 18px;
   color: rgba(255, 255, 255, 0.6);
 }
+
+
+
+
+/* MEDIA QUERIES --------------------------------------------------------------------------- */
+
+/* PANTALLA PEQUEÑA -------------------------------------------------------- */
+
+  @media screen and (min-width:781px){
+
+    /* Tag ------------------------------------------------------------------------- */
+    .tag{
+      padding: 2px 10px 3px;
+    }
+
+
+
+    /* Botones --------------------------------------------------------------------- */
+
+    .boton{
+      margin-left: 20px;
+    }
+
+    .boton.submit{
+      padding: 5px 10px;
+    }
+
+    .boton.editar{
+      padding: 5px 15px 15px;
+    }
+    .boton.editar svg{
+      margin-right: 5px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.cerrar{
+      width: 28px;
+      height: 28px;
+    }
+
+    .boton-icono.borrar{
+      width: 20px;
+      height: 20px;
+    }
+
+    .opcion-propiedad .boton-icono.borrar{
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.add svg{
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+      margin-bottom: 2px;
+    }
+
+    .boton-icono.subir{
+      width: 25px;
+      height: 25px;
+      margin: 0 15px;
+    }
+
+    .boton-icono.aceptar{
+      width: 28px;
+      height: 28px;
+      margin: 0 15px;
+    }
+
+    .boton-icono.flecha{
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+    }
+
+
+
+
+    /* Iconos ---------------------------------------------------------------------- */
+
+    .icono-add{
+      padding: 8px;
+      right: 80px;
+      bottom: 80px;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+    }
+
+    .icono-estado{
+      width: 30px;
+      height: 30px;   
+    }
+
+    .icono-editar{
+      width: 20px;
+      height: 20px;
+      margin-bottom: 2px;
+    }
+  }
+
+
+
+
+
+/* TABLET ------------------------------------------------ */
+
+  @media screen and (max-width:781px){
+
+    /* Tag ------------------------------------------------------------------------- */
+    .tag{
+      padding: 2px 10px 3px;
+    }
+
+
+
+    /* Botones --------------------------------------------------------------------- */
+
+    .boton{
+      margin-left: 20px;
+    }
+
+    .boton.submit{
+      padding: 5px 10px;
+    }
+
+    .boton.editar{
+      padding: 5px 20px 15px;
+    }
+    .boton.editar svg{
+      margin-right: 2px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.cerrar{
+      width: 25px;
+      height: 25px;
+    }
+
+    .boton-icono.borrar{
+      width: 18px;
+      height: 18px;
+    }
+
+    .opcion-propiedad .boton-icono.borrar{
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.add svg{
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+      margin-bottom: 2px;
+    }
+
+    .boton-icono.subir{
+      width: 20px;
+      height: 20px;
+      margin: 0 10px;
+    }
+
+    .boton-icono.aceptar{
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+
+    .boton-icono.flecha{
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+    }
+
+
+
+
+    /* Iconos ---------------------------------------------------------------------- */
+
+    .icono-add{
+      padding: 8px;
+      right: 45px;
+      bottom: 70px;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+    }
+
+    .icono-estado{
+      width: 28px;
+      height: 28px;
+    }
+
+    .icono-editar{
+      width: 18px;
+      height: 18px;
+      margin-bottom: 2px;
+    }
+  }
+
+
+
+
+/* MÓVIL -------------------------------------------------------- */
+
+  @media screen and (max-width:400px){
+
+    /* Tag ------------------------------------------------------------------------- */
+    .tag{
+      padding: 2px 10px 3px;
+    }
+
+
+
+    /* Botones --------------------------------------------------------------------- */
+
+    .boton{
+      margin-left: 15px;
+    }
+
+    .boton.submit{
+      padding: 5px 10px;
+    }
+
+    .boton.editar{
+      padding: 5px 10px;
+    }
+    .boton.editar svg{
+      margin-right: 2px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.cerrar{
+      width: 25px;
+      height: 25px;
+    }
+
+    .boton-icono.borrar{
+      width: 18px;
+      height: 18px;
+    }
+
+    .opcion-propiedad .boton-icono.borrar{
+      width: 18px;
+      height: 18px;
+    }
+
+    .boton-icono.add svg{
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+      margin-bottom: 2px;
+    }
+
+    .boton-icono.subir{
+      width: 20px;
+      height: 20px;
+      margin: 0 10px;
+    }
+
+    .boton-icono.aceptar{
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+
+    .boton-icono.flecha{
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+    }
+
+
+
+
+    /* Iconos ---------------------------------------------------------------------- */
+
+    .icono-add{
+      padding: 5px;
+      right: 30px;
+      bottom: 70px;
+      width: 35px;
+      height: 35px;
+      box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+    }
+
+    .icono-estado{
+      width: 24px;
+      height: 24px;   
+    }
+
+    .icono-editar{
+      margin: 0;
+      width: 18px;
+      height: 18px;
+    }
+  }

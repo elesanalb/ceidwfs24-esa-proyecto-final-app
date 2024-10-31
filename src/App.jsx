@@ -140,23 +140,32 @@ function App() {
             <nav className='lista-compra'>
 
                 <section>
+
+                    <div className="contenedor-filtros">
+                        <Filtros 
+                            filtrarMercado={filtrarMercado}
+                            mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
+                        />
+                    </div>
                     
-                    <Filtros 
-                        filtrarMercado={filtrarMercado}
-                        mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
-                    />
+                    
 
 
 
-
-                    {
-                        productosCompra.map( ({id,producto,estado,mercado,precio,prioridad,max}) => {
-                            return <ListaCompra key={id} id={id} 
-                                                editarProductosCompra={editarProductosCompra}
-                                                producto={producto} estado={estado} mercado={mercado} precio={precio} prioridad={prioridad} max={max}
-                                    />
-                        })
-                    }
+                    <div className="contenedor-productos">
+                        {
+                            productosCompra.map( ({id,producto,estado,mercado,precio,prioridad,max}) => {
+                                return <ListaCompra key={id} id={id} 
+                                                    editarProductosCompra={editarProductosCompra}
+                                                    producto={producto} estado={estado} mercado={mercado} precio={precio} prioridad={prioridad} max={max}
+                                        />
+                            })                
+                        }
+                        {
+                            productosCompra.length < 1 ? "No hay nada en el carrito de la compra"  : ""
+                        }
+                    </div>
+                    
                 </section>
                 
             </nav>

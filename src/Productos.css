@@ -440,6 +440,7 @@
 
         .productos-row{
             height: 50px;
+            padding: 15px;
         }
 
         .productos-row.heading{
@@ -504,6 +505,8 @@
 
         .productos-row{
             height: 50px;
+            padding: 15px;
+
         }
 
         .productos-row.heading{

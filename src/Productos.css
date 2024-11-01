@@ -11,18 +11,17 @@
 }
 
 .tabla-productos{
-    margin-top: -1px;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+    border-left: 3px solid rgb(187, 196, 233);
+    border-right: 3px solid rgb(187, 196, 233);
 }
 
 .tabla-productos.headings{
-    border-top: 1px solid white;
-    z-index: 2;
+    margin-top: -2px;
+    border-top: 3px solid rgb(187, 196, 233);
 }
 
 .tabla-productos.contenido-tabla:last-child{
-    border-bottom: 1px solid white;
+    border-bottom: 3px solid rgb(187, 196, 233);
 }
 
 .tab-frecuencia{
@@ -30,11 +29,12 @@
     position: sticky;
     display: flex;
     align-items: flex-end;
+    cursor: pointer;
 }
 
 .tab-actual{
     color: white;
-    border: 1px solid rgb(255, 255, 255);
+    border: 3px solid rgb(187, 196, 233);
     border-bottom: none;
     background-color: rgb(41, 47, 72);
     animation-name: tab-change-up;
@@ -46,6 +46,7 @@
     animation-name: tab-change-down;
     animation-duration: 0.3s;
     background-color: rgb(24, 28, 42);
+    margin-bottom: 3px;
 }
 
 
@@ -62,7 +63,7 @@
         .seccion-productos{
             margin: auto;
             max-width: 1400px;
-            padding: 0 60px 0 80px;
+            padding: 0 60px 50px 80px;
         }
 
         .contenedor-tabla{
@@ -89,12 +90,11 @@
 
         .tab-oculta{
             height: 30px;
-            margin-bottom: 2px;
         }
 
         @keyframes tab-change-up {
             from{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
             to{
@@ -109,7 +109,7 @@
                 height: 35px;
             }
             to{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
         }
@@ -123,7 +123,7 @@
     @media screen and (max-width:781px){
 
         .seccion-productos{
-            margin: 40px 20px 0;
+            margin: 40px 20px 50px;
         }
 
         .contenedor-tabla{
@@ -150,12 +150,11 @@
 
         .tab-oculta{
             height: 30px;
-            margin-bottom: 2px;
         }
 
         @keyframes tab-change-up {
             from{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
             to{
@@ -170,7 +169,7 @@
                 height: 35px;
             }
             to{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
         }
@@ -214,12 +213,11 @@
 
         .tab-oculta{
             height: 30px;
-            margin-bottom: 2px;
         }
 
         @keyframes tab-change-up {
             from{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
             to{
@@ -234,7 +232,7 @@
                 height: 35px;
             }
             to{
-                margin-bottom: 2px;
+                margin-bottom: 3px;
                 height: 30px;
             }
         }
@@ -256,19 +254,25 @@
 /* PRODUCTOS ROW ----------------------------------------------------------------------------------------------------------- */
 
 .productos-row{
-    border: 1px dashed gray;
+    /* border: 1px dashed gray; */
     background-color: rgb(32, 37, 56);
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgb(108, 119, 163);
 }
 
 .productos-row.heading{
     background-color: rgb(41, 47, 72);
+    border-bottom: 2px solid rgb(135, 149, 205);
 }
 
 .productos-row h3{
     display: flex;
     align-items: center;
+}
+
+.productos-row:not(.productos-row.heading){
+    border-right: 1px solid #3e4563;
 }
 
 
@@ -277,8 +281,9 @@
 /* Producto ------------------------------------------------------------- */
 
 .productos-row.producto{
-    border-color: rgb(105, 168, 105);
+    /* border-color: rgb(105, 168, 105); */
     left: 0;
+    cursor: pointer;
     /* box-shadow: 5px 0 10px 5px rgba(0, 0, 0, 0.3); */
 }
 
@@ -301,7 +306,7 @@
 /* Precio & Precio Kg --------------------------------------------------------- */
 
 .productos-row.precio{
-    border-color: rgb(195, 164, 108);
+    /* border-color: rgb(195, 164, 108); */
 }
 
 .productos-row.heading.precio{
@@ -310,7 +315,7 @@
 }
 
 .productos-row.preciokg{
-    border-color: rgb(195, 164, 108);
+    /* border-color: rgb(195, 164, 108); */
 }
 
 .productos-row.heading.preciokg{
@@ -323,11 +328,11 @@
 /* Cantidad,max,units -------------------------------------------------------- */
 
 .productos-row.cantidad{
-    border-color: rgb(152, 186, 132);
+    /* border-color: rgb(152, 186, 132); */
 }
 
 .productos-row.single-number{
-    border-color: rgb(128, 216, 216);
+    /* border-color: rgb(128, 216, 216); */
     display: flex;
     justify-content: center;
 }
@@ -345,15 +350,15 @@
 }
 
 .productos-row.mercado{ 
-    border-color: rgb(170, 73, 73);
+    /* border-color: rgb(170, 73, 73); */
 }
 
 .productos-row.prioridad{
-    border-color: rgb(186, 128, 186);
+    /* border-color: rgb(186, 128, 186); */
 }
 
 .productos-row.tipo{
-    border-color: rgb(145, 101, 101);
+    /* border-color: rgb(145, 101, 101); */
     overflow: hidden;
 }
 
@@ -384,6 +389,8 @@
         /* Producto ---------------------------------- */
         .productos-row.producto{
             width: 235px;
+            position: sticky;
+            left: 0;
         }
 
         /* Estado ------------------------------------ */
@@ -590,7 +597,7 @@
 }
 
 .campo-nombre.campo-obligatorio span{
-    color: rgb(255, 116, 116);
+    color: rgb(255, 44, 93);
 }
 
 .producto-form div.input{
@@ -618,6 +625,20 @@ div.multi-input{
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0)30%, rgba(0, 0, 0, 0.20) 90%);
 }
 
+.productos-seleccion{
+    overflow-x: scroll;
+}
+
+.seleccion-grid{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+}
+
+.seleccion-grid div.campo-seleccion{
+    display: flex;
+    align-items: center;
+}
+
 
 
 
@@ -634,7 +655,7 @@ div.multi-input{
 }
 
 .error-input{
-    border: 1px solid red;
+    border: 1px solid rgb(255, 44, 93);
 }
 
 .producto-form div.input,select{
@@ -669,8 +690,11 @@ div.multi-input{
     appearance: none;
     -webkit-appearance: none;
 }
-.input-cantidad input::-webkit-calendar-picker-indicator,datalist::-webkit-calendar-picker-indicator{
-    display: none;
+
+input::-webkit-calendar-picker-indicator,datalist::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+    padding: 0;
+    margin-right: -6px;
 }
 
 
@@ -683,7 +707,7 @@ div.multi-input{
     align-items: center;
 }
 .react-toggle-track{
-    background-color: rgb(152, 69, 69);
+    background-color: rgb(177, 67, 93);
 }
 .react-toggle-track-check,.react-toggle-track-x{
     display: flex;
@@ -692,6 +716,44 @@ div.multi-input{
 .react-toggle-track-x{
     justify-content: flex-end;
     width: 15px;
+}
+
+
+
+/* Factura ---------------------------------------------------- */
+
+.contenedor-factura{
+    height: fit-content;
+}
+
+.input-factura{
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-factura input{
+    display: none;
+}
+
+.uploaded-img{
+    rotate: -10deg;
+    border-radius: 10px;
+    box-shadow: -3px 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.uploaded-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+
+/* Descuento ----------------------------------------------- */
+
+.input-descuento{
+    display: flex;
+    align-items: center;
 }
 
 
@@ -719,6 +781,13 @@ div.multi-input{
         .producto-form.producto-nuevo{
             max-height: 370px;
         }
+        
+        .producto-form.nueva-compra{
+            margin-top: 0;
+        }
+        .producto-form.nueva-compra .input-factura{
+            margin-bottom: 20px;
+        }
 
         .producto-form div.input{
             margin-top: 20px;
@@ -737,12 +806,21 @@ div.multi-input{
             padding: 8px;
         }
 
+        .productos-seleccion{
+            padding: 15px 0;
+        }
+
+        .seleccion-grid div.campo-seleccion,.seleccion-grid div.campo-seleccion input{
+            height: 38px;
+        }
+
+
 
 
 
         /* INPUTS ----------------------------------------------- */
 
-        .producto-form input:not(input[type="submit"]) ,select{
+        .producto-form input:not(input[type="submit"]),select,.seleccion-grid .estado-input{
             padding: 5px 10px;
         }
 
@@ -769,6 +847,55 @@ div.multi-input{
         /* Units & Max ---------------------------- */
         .input-single-cant{
             width: 50px;
+        }
+
+        /* Fecha ------------------------------------ */
+        .input-fecha{
+            width: 150px;
+        }
+
+        /* Seleccion productos ---------------------- */
+        .seleccion-grid .campo-nombre{
+            padding-left: 5px;
+        }
+        .seleccion-grid .campo-nombre.input-descuento{
+            padding-left: 10px;
+        }
+        .seleccion-producto{
+            width: 160px;
+        }
+        .seleccion-precio{
+            width: 80px;
+        }
+
+        /* Descuento -------------------------------- */
+        .seleccion-grid .input-single-cant{
+            width: 40px;
+        }
+        .input-descuento{
+            width: 60px; 
+        }
+        .input-descuento input{
+            width: 100%;
+        }
+
+        /* Factura ----------------------------------- */
+
+
+        .contenedor-factura.upload-factura{
+            margin-top: 0px;
+            margin-right: 10px;
+        }
+
+        .contenedor-factura.uploaded-factura{
+            margin-top: 0px;
+            margin-right: 15px;
+        }
+
+        .uploaded-img{
+            width: 50px;
+            height: 70px;
+            margin: 12px;
         }
         
     }
@@ -799,6 +926,13 @@ div.multi-input{
             max-height: 370px;
         }
 
+        .producto-form.nueva-compra{
+            margin-top: 0;
+        }
+        .producto-form.nueva-compra .input-factura{
+            margin-bottom: 20px;
+        }
+
         .producto-form div.input{
             margin-top: 20px;
             padding-right: 5px;
@@ -816,12 +950,21 @@ div.multi-input{
             padding: 8px;
         }
 
+        .productos-seleccion{
+            padding: 12px 0;
+        }
+
+        .seleccion-grid div.campo-seleccion,.seleccion-grid div.campo-seleccion input{
+            height: 35px;
+        }
+
+
 
 
 
         /* INPUTS ----------------------------------------------- */
 
-        .producto-form input:not(input[type="submit"]) ,select{
+        .producto-form input:not(input[type="submit"]),select,.seleccion-grid .estado-input{
             padding: 5px 10px;
         }
 
@@ -848,8 +991,58 @@ div.multi-input{
         /* Units & Max ---------------------------- */
         .input-single-cant{
             width: 45px;
-        }        
-        
+        }
+
+        /* Fecha ------------------------------------ */
+        .input-fecha{
+            width: 140px;
+        }
+
+        /* Seleccion productos ---------------------- */
+        .seleccion-grid .campo-nombre{
+            padding-left: 5px;
+        }
+        .seleccion-grid .campo-nombre.input-descuento{
+            padding-left: 10px;
+        }
+        .seleccion-producto{
+            width: 145px;
+        }
+        .seleccion-precio{
+            width: 70px;
+        }
+
+        /* Descuento -------------------------------- */
+        .seleccion-grid .input-single-cant{
+            width: 40px;
+        }
+        .input-descuento{
+            width: 60px; 
+        }
+        .input-descuento input{
+            width: 100%;
+        }
+
+
+        /* Factura ----------------------------------- */
+
+        .contenedor-factura{
+            margin-right: 10px;
+        }
+
+        .contenedor-factura.upload-factura{
+            margin-top: 4px;
+        }
+
+        .contenedor-factura.uploaded-factura{
+            margin-top: 0px;
+        }
+
+        .uploaded-img{
+            width: 45px;
+            height: 63px;
+            margin: 10px;
+        }
     }
 
 
@@ -875,6 +1068,14 @@ div.multi-input{
             max-height: 370px;
         }
 
+        .producto-form.nueva-compra{
+            margin-top: 0;
+        }
+        .producto-form.nueva-compra .input-factura{
+            margin-bottom: 20px;
+        }
+
+
         .producto-form div.input{
             margin-top: 20px;
             padding-right: 5px;
@@ -892,12 +1093,22 @@ div.multi-input{
             padding: 5px;
         }
 
+        .productos-seleccion{
+            padding: 12px 0;
+        }
+        
+        .seleccion-grid div.campo-seleccion,.seleccion-grid div.campo-seleccion input{
+            height: 30px;
+        }
+
+        
+
 
 
 
         /* INPUTS ----------------------------------------------- */
 
-        .producto-form input:not(input[type="submit"]) ,select{
+        .producto-form input:not(input[type="submit"]),select,.seleccion-grid .estado-input{
             padding: 5px 10px;
         }
 
@@ -924,8 +1135,58 @@ div.multi-input{
         /* Units & Max ---------------------------- */
         .input-single-cant{
             width: 40px;
-        }        
-        
+        }
+
+        /* Fecha ------------------------------------ */
+        .input-fecha{
+            width: 140px;
+        }
+
+        /* Seleccion productos ---------------------- */
+        .seleccion-grid .campo-nombre{
+            padding-left: 5px;
+        }
+        .seleccion-grid .campo-nombre.input-descuento{
+            padding-left: 10px;
+        }
+        .seleccion-producto{
+            width: 140px;
+        }
+        .seleccion-precio{
+            width: 65px;
+        }
+
+        /* Descuento -------------------------------- */
+        .seleccion-grid .input-single-cant{
+            width: 40px;
+        }
+        .input-descuento{
+            width: 55px; 
+        }
+        .input-descuento input{
+            width: 100%;
+        }
+
+
+        /* Factura ----------------------------------- */
+
+        .contenedor-factura{
+            margin-right: 10px;
+        }
+
+        .contenedor-factura.upload-factura{
+            margin-top: 7px;
+        }
+
+        .contenedor-factura.uploaded-factura{
+            margin-top: -5px;
+        }
+
+        .uploaded-img{
+            width: 42px;
+            height: 60px;
+            margin: 10px;
+        }
     }
 
 
@@ -1181,6 +1442,7 @@ div.multi-input{
 /* MÓVIL ------------------------------------------------ */
 
     @media screen and (max-width:400px){
+
         .info-propiedad{
             margin-top: 20px;
         }
@@ -1203,7 +1465,7 @@ div.multi-input{
         .input-propiedad{
             border-radius: 25px;
             padding: 10px 15px;
-            width: 160px; 
+            width: 180px; 
             margin-right: 15px;
         }
         

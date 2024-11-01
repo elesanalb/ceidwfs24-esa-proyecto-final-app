@@ -49,7 +49,7 @@ h4{
 
 .mensaje-error{
   position: absolute;
-  color: red;
+  color: rgb(255, 44, 93);
 }
 
 .tag{
@@ -583,15 +583,11 @@ header{
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  position: relative;
 
-.menu ul li.gasto{
-  border-left: 1px solid rgb(255, 255, 255);
-  border-right: 1px solid rgb(255, 255, 255);
 }
 
 .menu .clicked{
-  background-color: rgb(41, 47, 72);
 }
 
 .menu-link{
@@ -601,13 +597,111 @@ header{
   display: block;
 }
 
-.menu-link:hover{
-  background-color: rgb(223, 223, 223);
+.menu ul li:hover{
+  /* background-color: rgb(178, 193, 255); */
 }
 
 .menu-link.clicked{
-  background-color: grey;
+  /* background-color: grey; */
   color: white;
+}
+
+.icono-menu{
+  position: absolute;
+  bottom: 0;
+  animation-name: menu-animacion-up;
+  animation-duration: 0.7s;
+}
+
+.menu-circulo{
+  width: 40px;
+  height: 40px;
+  background-color: rgb(101, 121, 200);
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  animation-name: circulo-animacion;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+@keyframes menu-animacion-up {
+  from{
+    opacity: 0;
+    margin-bottom: -40px;
+  }
+
+  to{
+    opacity: 1;
+    margin-bottom: 0;
+  }
+}
+
+@keyframes circulo-animacion {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+
+
+/* Entra de izquierda a derecha
+*            |--> ·            */
+.menu-animacion-p-l{
+  animation-name: menu-animacion-l;
+  animation-duration: 0.7s;
+  animation-direction: normal;
+}
+
+/* Sale de derecha a izquierda
+*            |<-- ·             */
+.menu-animacion-out-l{
+  animation-name: menu-animacion-l;
+  animation-duration: 0.7s;
+  animation-direction: reverse;
+}
+
+/* Entra de derecha a izquierda
+*           · <--|              */
+.menu-animacion-in-r{
+  animation-name: menu-animacion-r;
+  animation-duration: 0.7s;
+  animation-direction: normal;
+}
+
+/* Sale de derecha a izquierda
+*          · -->|               */
+.menu-animacion-out-r{
+  animation-name: menu-animacion-r;
+  animation-duration: 0.7s;
+  animation-direction: reverse;
+}
+
+
+@keyframes menu-animacion-l{
+  from{
+    margin-left: -100px;
+    opacity: 0;
+  }
+  to{
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes menu-animacion-r{
+  from{
+    margin-right: -100px;
+    opacity: 0;
+  }
+  to{
+    margin-left: 0;
+    opacity: 1;
+  }
 }
 
 
@@ -666,6 +760,10 @@ header{
     .menu-link{
       padding: 10px 40px;
     } 
+
+    .gasto.menu-link{
+      padding: 10px 0px;
+    }
   }
 
 
@@ -685,7 +783,11 @@ header{
 
     .menu-link{
       padding: 10px 30px;
-    }  
+    }
+
+    .gasto.menu-link{
+      padding: 10px 0px;
+    }
 
   }
 
@@ -706,7 +808,11 @@ header{
 
     .menu-link{
       padding: 10px 30px;
-    }  
+    }
+
+    .gasto.menu-link{
+      padding: 10px 5px;
+    }
 
   }
 
@@ -911,6 +1017,7 @@ header{
 .boton{
   -webkit-appearance: none;
   appearance: none;
+  cursor:pointer;
   border: none;
   font-weight: 500;
 }
@@ -920,6 +1027,7 @@ header{
   -webkit-appearance: none;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 
@@ -933,7 +1041,7 @@ header{
 /* CANCELAR ------------------------------------------- */
 .boton.cancelar{
   background:none;
-  color:red;
+  color:rgb(255, 44, 93);
   text-decoration: underline;
 }
 
@@ -983,6 +1091,16 @@ header{
 .boton-icono.mostrar{
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+
+/* AÑADIR FOTO --------------------------------------- */
+.boton-icono.foto{
+  color: rgba(255, 255, 255, 0.3);
+}
+.boton-icono.foto:hover{
+  color: white;
 }
 
 
@@ -1010,6 +1128,7 @@ header{
 }
 
 .icono-editar{
+  cursor: pointer;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -1136,6 +1255,11 @@ header{
       margin: 5px;
     }
 
+    .boton-icono.foto{
+      width: 34px;
+      height: 34px;
+    }
+
 
 
 
@@ -1252,6 +1376,12 @@ header{
       margin: 5px;
     }
 
+    .boton-icono.foto{
+      width: 30px;
+      height: 30px;
+    }
+
+
 
 
 
@@ -1349,6 +1479,11 @@ header{
       width: 25px;
       height: 25px;
       margin: 5px;
+    }
+
+    .boton-icono.foto{
+      width: 20px;
+      height: 20px;
     }
 
 

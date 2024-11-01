@@ -454,6 +454,12 @@ h4{
 
 header{
   width: 100vw;
+  position: relative;
+}
+
+
+.logo{
+  position: absolute;
 }
 
 
@@ -467,7 +473,13 @@ header{
     width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 80px 0 50px;
+  }
+  .logo{
+    position: relative;
+    width: 100px;
+    margin-right: 30px;
   }
 }
 
@@ -478,7 +490,12 @@ header{
 
   @media screen and (max-width:1629px){
     header{
-      padding: 80px 100px 40px;
+      padding: 80px 220px 50px;
+    }
+    .logo{
+      width: 100px;
+      left: 90px;
+      top: 55px;
     }
   }
 
@@ -490,7 +507,13 @@ header{
 
   @media screen and (max-width:1275px){
     header{
-      padding: 60px 60px 30px;
+      padding: 60px 80px 30px;
+    }
+
+    .logo{
+      width: 100px;
+      left: -60px;
+      top: 35px;
     }
   }
 
@@ -501,7 +524,24 @@ header{
 
   @media screen and (max-width:781px){
     header{
-      padding: 50px 45px 35px;
+      padding: 50px 60px 35px;
+    }
+
+    .logo{
+      width: 90px;
+      left: -55px;
+      top: 30px;
+    }
+  }
+
+
+
+  @media screen and (max-width:503px){
+    .logo{
+      position: absolute;
+      width: 90px;
+      left: -55px;
+      top: 50px;
     }
   }
 
@@ -513,7 +553,14 @@ header{
 
   @media screen and (max-width:400px){
     header{
-      padding: 40px 35px 20px;
+      padding: 40px 50px 20px;
+    }
+
+    .logo{
+      position: absolute;
+      width: 90px;
+      left: -55px;
+      top: 40px;
     }
   }
   

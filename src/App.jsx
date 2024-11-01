@@ -141,7 +141,7 @@ function App() {
 
                 <section>
 
-                    <div className="contenedor-filtros">
+                    <div className="seccion-filtros">
                         <Filtros 
                             filtrarMercado={filtrarMercado}
                             mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}

@@ -9,7 +9,6 @@ import { FaSearch } from "react-icons/fa";
 
 function Filtros(
     {
-        buscarItem,
         filtrarMercado,
         mercados,tipos,prioridadLista
     }
@@ -49,72 +48,66 @@ function Filtros(
 
     return (
         <>
-            <div className="barra-busqueda">
-               <div className='contenedor-filtros'>
+            <section className="contenedor-filtros">
+                <div className='filtros'>
 
 
+    {/* ------------ BUSQUEDA ---------------------------------------------------------------------------------------------------------------------------------------- */}
 
-{/* ----------- BUSQUEDA ---------------------------------------------------------------------------------------------------------------------------------------- */}
+                    <div className={ `filtro-texto `}>
+                        
+                        <FaSearch
+                            onClick={ (event) => {
+                                setStatusAnimacionTexto(!statusAnimacionTexto)
+                                if( !statusAnimacionTexto ){
+                                    setTextSearchStatus(!textSearchStatus)
+                                }else{
+                                    setTimeout( () => { setTextSearchStatus(!textSearchStatus) },550)
+                                }
+                                
+                                
+                                
+                            }}
+                        />
 
-                    <div className='filtros'>
-
-                        <div className={ `filtro-texto `}>
+                        
+                        {
+                            textSearchStatus ? 
                             
-                            <FaSearch
-                                onClick={ (event) => {
-                                    setStatusAnimacionTexto(!statusAnimacionTexto)
-                                    if( !statusAnimacionTexto ){
-                                        setTextSearchStatus(!textSearchStatus)
-                                    }else{
-                                        setTimeout( () => { setTextSearchStatus(!textSearchStatus) },550)
-                                    }
-                                    
-                                    
-                                    
+                            <input type="text" className={ statusAnimacionTexto ? "animacion-busqueda-in" : "animacion-busqueda-out" }
+                            placeholder="Buscar..."
+                                onChange={ event => {
                                 }}
                             />
 
-                            
-                            {
-                                textSearchStatus ? 
-                                
-                                <input type="text" className={ statusAnimacionTexto ? "animacion-busqueda-in" : "animacion-busqueda-out" }
-                                placeholder="Buscar..."
-                                    onChange={ event => {
-                                        buscarItem(event.target.value)
-                                        console.log(event.target.value)
-                                    }}
-                                />
-
-                                : ""
-                            }
-                            
-
-                        </div>
-
-
-
-
+                            : ""
+                        }
                         
+
+                    </div>
+
+
+
+
+                    
     {/* --------------- MERCADOS ------------------------------------------------------------------------------------------------------------------------------------ */}
 
-                        <MultiSelect className="filtro-seleccion"
-                            display='chip' placeholder='Mercados' maxSelectedLabels=""
+                    <MultiSelect className="filtro-seleccion"
+                        display='chip' placeholder='Mercados' maxSelectedLabels=""
 
-                            value={seleccionMercado} 
-                            
-                            options={
-                                mercados.map( ({mercado,id}) => { return mercado })
-                            }
-                            
-                            onFocus={() => {
-                            }}
+                        value={seleccionMercado} 
+                        
+                        options={
+                            mercados.map( ({mercado,id}) => { return mercado })
+                        }
+                        
+                        onFocus={() => {
+                        }}
 
-                            onChange={ event => {
-                                setSeleccionMercado(event.value)
-                                console.log(seleccionMercado)
-                            }}
-                        />
+                        onChange={ event => {
+                            setSeleccionMercado(event.value)
+                        }}
+                    />
 
 
 
@@ -122,19 +115,19 @@ function Filtros(
 
     {/* --------------- TIPO ----------------------------------------------------------------------------------------------------------------------------------------- */}
 
-                        <MultiSelect className="filtro-seleccion"
-                            display="chip" placeholder="Tipos" maxSelectedLabels=""
+                    <MultiSelect className="filtro-seleccion"
+                        display="chip" placeholder="Tipos" maxSelectedLabels=""
 
-                            value={seleccionTipos}
+                        value={seleccionTipos}
 
-                            options={
-                                tipos.map( ({tipo,id}) => { return tipo })
-                            }
+                        options={
+                            tipos.map( ({tipo,id}) => { return tipo })
+                        }
 
-                            onChange={ event => {
-                                setSeleccionTipos(event.value)
-                            }}
-                        />
+                        onChange={ event => {
+                            setSeleccionTipos(event.value)
+                        }}
+                    />
 
 
 
@@ -142,26 +135,24 @@ function Filtros(
 
     {/* ---------------- PRIORIDAD ---------------------------------------------------------------------------------------------------------------------------------------- */}
 
-                        <MultiSelect className="filtro-seleccion"
-                            display="chip" placeholder="Prioridad" maxSelectedLabels=""
+                    <MultiSelect className="filtro-seleccion"
+                        display="chip" placeholder="Prioridad" maxSelectedLabels=""
 
-                            value={seleccionPrioridad}
+                        value={seleccionPrioridad}
 
-                            options={
-                                prioridadLista.map( ({prioridad,id}) => { return prioridad })
-                            }
+                        options={
+                            prioridadLista.map( ({prioridad,id}) => { return prioridad })
+                        }
 
-                            onChange={ event => {
-                                setSeleccionPrioridad(event.value)
-                            }}
-                        />
+                        onChange={ event => {
+                            setSeleccionPrioridad(event.value)
+                        }}
+                    />
 
-
-                    </div>
 
                 </div> 
-            </div>
-            
+            </section>
+                        
         </>
     )
 }

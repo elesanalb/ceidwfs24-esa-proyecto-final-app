@@ -49,14 +49,14 @@ let [statusPopup,setStatusPopup] = useState(true)
         <>
             <nav className="nav-blur segundo-popup">
 
-                <div className={`resumen pop-up ${ statusPopup ? "" : "pop-out" }`}>
+                <div className={`resumen producto-nuevo pop-up ${ statusPopup ? "" : "pop-out" }`}>
 
 
 
                     <form
                         onSubmit={ event => {
 
-                            /* event.preventDefault() */
+                            event.preventDefault()
 
 /* --------------------- PETICION A LA API ----------------------------------------------------------------------------------------------------------------- */
                             
@@ -88,8 +88,11 @@ let [statusPopup,setStatusPopup] = useState(true)
                             )
                             .then( res => res.json() )
                             .then( ([{id}]) => {
+                                
                                 addProducto(
                                     {
+                                        id : id,
+                                        /*
                                         producto : producto,
                                         estado : estado,
                                         precio : precio,
@@ -102,8 +105,10 @@ let [statusPopup,setStatusPopup] = useState(true)
                                         prioridad : seleccionPrioridad,
                                         tipo : seleccionTipo,
                                         frecuencia : frecuencia
+                                        */
                                     }
                                 )
+                                    
                             })
 
                             setStatusPopup(false)

@@ -1,11 +1,3 @@
-.lista-productos{
-    overflow: scroll;
-}
-
-.contenedor-filtros{
-    width: 100%;
-}
-
 .contenedor-productos{
     display: flex;
     flex-direction: column;
@@ -42,6 +34,32 @@
 
 /* MEDIA QUERIES ------------------------------------------------------------------------------ */
 
+/* MONITOR GRANDE --------------------------------------------- */
+
+    @media screen and (min-width:1629px){
+
+        .seccion-filtros{
+            display: flex;
+            justify-content: center;
+        }
+  }
+
+
+
+
+/* PANTALLA GRANDE --------------------------------------------------------- */
+
+    @media screen and (min-width:1452px){
+
+        .seccion-filtros{
+            padding: 0 120px;
+        }
+        
+    }
+
+
+
+
 /* PANTALLA PEQUEÑA --------------------------------------------------------------- */
 
     @media screen and (min-width:973px){
@@ -51,16 +69,11 @@
             padding: 0 60px 100px;
         }
 
-
         .contenedor-productos{
             flex-direction: row;
             flex-flow: row wrap;
             justify-content: center;
-        }
-        
-
-        /* Alinear la última fila en flex-start, en vez de que justify-content: space-between actúe. No entiendo bien porqué funciona, esta solución es de otra persona */
-        
+        }        
 
         .producto-lista{
             margin-right: 15px;
@@ -71,8 +84,7 @@
     @media screen and (min-width:781px){
 
         .lista-compra{
-            min-width: 80vw;
-            max-width: 1000px;
+            min-width: 600px;
             padding: 0 60px 100px;
         }
 

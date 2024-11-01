@@ -1,17 +1,11 @@
-.barra-busqueda{
-  width: 100%;
-  overflow-x: scroll;
-}
-
 .contenedor-filtros{
-  width: fit-content;
+  overflow-x: scroll;
 }
 
 .filtros{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  max-width: 100%;
 }
 
 .filtro-texto{
@@ -73,8 +67,8 @@
 /* PANTALLA PEQUEÑA -------------------------------------------------------------*/
 
   @media screen and (min-width:781px){
-
-    .barra-busqueda{
+    
+    .contenedor-filtros{
       margin-bottom: 30px;
     }
 
@@ -132,7 +126,7 @@
 
   @media screen and (max-width:781px){
 
-    .barra-busqueda{
+    .contenedor-filtros{
       margin-bottom: 20px;
     }
 
@@ -191,8 +185,9 @@
 
   @media screen and (max-width:400px){
 
-    .barra-busqueda{
+    .contenedor-filtros{
       margin-bottom: 20px;
+      max-width: 100%;
     }
 
     .filtros{

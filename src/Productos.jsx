@@ -111,29 +111,29 @@ function Productos(){
 
     /* Prioridad ----------------------------------------------------------- */
 
-    let [prioridadLista,setPrioridadLista] = useState([])
-   
-    useEffect( () => {
-        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad")
-        .then( res => res.json())
-        .then( prioridad => {
-            setPrioridadLista(prioridad)
-        })
-    },[])
+        let [prioridadLista,setPrioridadLista] = useState([])
+    
+        useEffect( () => {
+            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/prioridad")
+            .then( res => res.json())
+            .then( prioridad => {
+                setPrioridadLista(prioridad)
+            })
+        },[])
 
 
 
 
     /* Tipos -------------------------------------------------------------- */
 
-    let [tipos,setTipos] = useState([])
-    useEffect( () => {
-        fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos")
-        .then( res => res.json())
-        .then( tipos => {
-            setTipos(tipos)
-        })
-    },[])
+        let [tipos,setTipos] = useState([])
+        useEffect( () => {
+            fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/tipos")
+            .then( res => res.json())
+            .then( tipos => {
+                setTipos(tipos)
+            })
+        },[])
 
 
 
@@ -145,7 +145,7 @@ function Productos(){
 
     let [statusTab,setStatusTab] = useState(false)
 
-    function productosFrecuencia(frecuencia){
+    function productosPost(frecuencia){
 
         fetch("https://ceidwfs24-esa-proyecto-final-back.onrender.com/productos",
             {
@@ -161,7 +161,6 @@ function Productos(){
             setProductos(productos)
         })
     }
-
 
 
 
@@ -286,8 +285,8 @@ function Productos(){
 
 /* PRODUCTOS ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    function addProducto(producto){
-       setProductos([...productos,producto]) 
+    function addProducto({id}){
+       setProductos( productos.filter( productos => productos.id == id ).map( ({id}) => { return id }) )
     }
 
     
@@ -493,10 +492,6 @@ function Productos(){
 
     let [busquedaItem,setBusquedaItem] = useState()
 
-    function buscarItem(item){
-        setProductos( productos.filter( productos => productos.producto == item ))
-    }
-
 
 
 
@@ -536,26 +531,30 @@ function Productos(){
                     : ""
                 }
 
-                {/* Icono añadir producto */}
 
-                    <FaPlus className='icono-add'
-                        onClick={ event => {
-                            crearProducto(true)
-                        }}
-                    />
+                    <div className='barra-tareas'>
 
+                        {/* Componente Filtro */}
 
-
+                        <Filtros 
+                            mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
+                        />
 
 
-{/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+
+                       {/* Icono añadir producto */}
+
+                        <FaPlus className='icono-add'
+                            onClick={ event => {
+                                crearProducto(true)
+                            }}
+                        />
 
 
-                {/* Componente Filtro */}
-                    <Filtros 
-                        buscarItem={buscarItem}
-                        mercados={mercados} tipos={tipos} prioridadLista={prioridadLista}
-                    />
+
+                    </div>
+
+                
 
 
 
@@ -570,7 +569,7 @@ function Productos(){
 
                         <div className={`tab-mensual ${ statusTab ? "tab-oculta" : "tab-actual" }`}
                             onClick={ event => {
-                                productosFrecuencia(1)
+                                productosPost(1)
                                 setStatusTab(false)
                             }}
                         >
@@ -580,7 +579,7 @@ function Productos(){
 
                         <div className={`tab-ocasional ${ statusTab ? "tab-actual" : "tab-oculta" }`}
                             onClick={ event => {
-                                productosFrecuencia(2)
+                                productosPost(2)
                                 setStatusTab(true)
                             }}
                         >
@@ -711,8 +710,6 @@ function Productos(){
                                                     }
 
                                                     onChange={ event => {
-
-                                                        console.log(estado)
 
                             /* ------------------------ PETICION A LA API ---------------------------------------------------------------------------------------*/
 

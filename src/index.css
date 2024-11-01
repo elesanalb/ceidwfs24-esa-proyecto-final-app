@@ -536,18 +536,6 @@ header{
 
 
 
-  @media screen and (max-width:503px){
-    .logo{
-      position: absolute;
-      width: 90px;
-      left: -55px;
-      top: 50px;
-    }
-  }
-
-
-
-
 
 /* MOVIL --------------------------------------- */
 
@@ -558,9 +546,9 @@ header{
 
     .logo{
       position: absolute;
-      width: 90px;
-      left: -55px;
-      top: 40px;
+      width: 80px;
+      left: -45px;
+      top: 20px;
     }
   }
   
@@ -629,16 +617,16 @@ header{
 
 /* MONITOR GRANDE --------------------------------------------- */
 
-@media screen and (min-width:1629px){
+  @media screen and (min-width:1629px){
 
-  .menu{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+    .menu{
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
   }
-
-}
 
 
 
@@ -1030,7 +1018,52 @@ header{
 
 /* MEDIA QUERIES --------------------------------------------------------------------------- */
 
+
+/* MONITOR GRANDE --------------------------------------------- */
+
+  @media screen and (min-width:1629px){
+
+    .barra-tareas{
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 30px;
+      margin-left: 100px;
+    }
+
+  }
+
+
+
+
+/* PANTALLA GRANDE --------------------------------------------------------- */
+
+  @media screen and (min-width:1452px){
+
+      .barra-tareas{
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 30px;
+      }
+
+      .barra-tareas .contenedor-filtros{
+        margin-bottom: 0;
+      }
+
+
+      .icono-add{
+        position: relative;
+        box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+        left: 0;
+        top: -5px;
+        margin-left: 40px;
+        margin-right: 50px;
+      }
+  }
+
 /* PANTALLA PEQUEÑA -------------------------------------------------------- */
+
+  
 
   @media screen and (min-width:781px){
 
@@ -1058,6 +1091,9 @@ header{
       margin-right: 5px;
       width: 18px;
       height: 18px;
+    }
+    .producto-nuevo .boton.editar{
+      padding: 5px 10px 5px;
     }
 
     .boton-icono.cerrar{
@@ -1128,6 +1164,19 @@ header{
 
 
 
+  @media screen and (max-width:1452px){
+    .icono-add{
+      padding: 8px;
+      right: 80px;
+      bottom: 80px;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+    }
+  }
+
+
+
 
 
 /* TABLET ------------------------------------------------ */
@@ -1158,6 +1207,9 @@ header{
       margin-right: 2px;
       width: 18px;
       height: 18px;
+    }
+    .producto-nuevo .boton.editar{
+      padding: 5px 0 5px;
     }
 
     .boton-icono.cerrar{
